@@ -44,7 +44,8 @@
         "php": ">=7.1.0",
         "pinkcrab/perique": "0.5.*",
         "pinkcrab/http": "0.2.*",
-        "pinkcrab/enqueue": "1.*"
+        "pinkcrab/enqueue": "1.*",
+        "pinkcrab/wp-nonce": "dev-master"
     },
     "scripts": {
         "test": "phpunit --coverage-clover clover.xml --testdox",

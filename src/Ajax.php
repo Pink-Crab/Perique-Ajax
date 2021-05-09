@@ -126,11 +126,11 @@ abstract class Ajax {
 	}
 
 	/**
-	 * Checks if the callback and action are defined.
+	 * Checks if the action is defined.
 	 *
 	 * @return bool
 	 */
-	public function is_valid(): bool {
+	public function has_valid_action(): bool {
 		return is_string( $this->get_action() )
 		&& \mb_strlen( $this->get_action() ) > 0;
 	}

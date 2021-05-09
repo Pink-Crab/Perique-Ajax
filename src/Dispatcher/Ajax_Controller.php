@@ -26,11 +26,11 @@ namespace PinkCrab\Ajax\Dispatcher;
 
 use Closure;
 use PinkCrab\Ajax\Ajax;
-use PinkCrab\Ajax\Response_Factory;
+use PinkCrab\Ajax\Dispatcher\Response_Factory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class Response_Controller {
+class Ajax_Controller {
 
 	/** @var ServerRequestInterface */
 	protected $server_request;
@@ -52,7 +52,7 @@ class Response_Controller {
 	 * @param \PinkCrab\Ajax\Ajax $ajax_class
 	 * @return bool
 	 */
-	public function validate_ajax( Ajax $ajax_class ): bool {
+	public function validate_request( Ajax $ajax_class ): bool {
 		return true; //@todo WRITE IT
 	}
 
@@ -78,7 +78,7 @@ class Response_Controller {
 		 * @return \Psr\Http\Message\ResponseInterface
 		 */
 		return function() use ( $ajax_class ): ResponseInterface {
-			return $this->validate_ajax( $ajax_class )
+			return $this->validate_request( $ajax_class )
 				? $this->invoke_callback( $ajax_class )
 				: $this->response_factory->unauthorised();
 		};

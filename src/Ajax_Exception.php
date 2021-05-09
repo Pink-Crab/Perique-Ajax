@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Primary service for dispatching ajax calls.
+ * Custom exceptions for the Ajax module.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -22,53 +22,31 @@ declare(strict_types=1);
  * @package PinkCrab\Ajax
  */
 
-namespace PinkCrab\Ajax\Dispatcher;
+namespace PinkCrab\Ajax;
 
-use PinkCrab\Ajax\Ajax;
-use PinkCrab\Loader\Hook_Loader;
-use PinkCrab\Ajax\Dispatcher\Ajax_Controller;
+use Exception;
 
-class Ajax_Dispatcher {
-
-	/** @var Hook_Loader */
-	protected $loader;
-
-	/** @var Ajax_Controller */
-	protected $Ajax_Controller;
-
-	public function __construct( Ajax_Controller $Ajax_Controller ) {
-		$this->loader              = new Hook_Loader();
-		$this->Ajax_Controller = $Ajax_Controller;
-	}
+class Ajax_Exception extends Exception {
 
 	/**
-	 * Adds an ajax call to the loader
-	 *
-	 * @param \PinkCrab\Ajax\Ajax $ajax
-	 * @return void
+	 * Class is not an Ajax::class
+	 * @code 1
+     * @param string $operation The operation being carries out.
+	 * @return Ajax_Exception
 	 */
-	public function add_ajax_call( Ajax $ajax ): void {
-
-		// If ajax is not valid (no action), skip
-		if ( ! $ajax->is_valid() ) {
-			return;
-		}
-
-		$this->loader->ajax(
-			$ajax->get_action(),
-			$this->Ajax_Controller->create_callback( $ajax ),
-			$ajax->get_logged_out(),
-			$ajax->get_logged_in()
-		);
+	public static function none_ajax_model(string $operation = 'unknown operation'): Ajax_Exception {
+		$message = 'None Ajax Model passed to ' . $operation;
+		return new Ajax_Exception( $message, 1 );
 	}
 
-	/**
-	 * Register all hooks
-	 *
-	 * @return void
+    /**
+	 * Ajax::class has no defined action.
+	 * @code 2
+     * @param string $class Ajax class
+	 * @return Ajax_Exception
 	 */
-	public function execute(): void {
-		$this->loader->register_hooks();
+    public static function undefined_action(string $class): Ajax_Exception {
+		$message = "{$class} has no defined action property";
+		return new Ajax_Exception( $message, 2 );
 	}
-
 }

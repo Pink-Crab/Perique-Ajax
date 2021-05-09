@@ -36,18 +36,18 @@ class Test_Middleware extends WP_UnitTestCase {
 	 * @return Registration_Middleware
 	 */
 	public function middleware_provider(): Registration_Middleware {
-		$ajax_dispatcher = new Ajax_Dispatcher( self::$perique_app );
-		$middleware = new Ajax_Middleware( $ajax_dispatcher );
-		return $middleware;
+		// $ajax_dispatcher = new Ajax_Dispatcher( self::$perique_app );
+		// $middleware = new Ajax_Middleware( $ajax_dispatcher );
+		// return $middleware;
 	}
 
 	/** @testdox It should be possible to dispatch multiple Ajax calls using Registration Middleware class. */
 	public function test_can_dispatch_ajax_calls(): void {
-		// Run setup.
-		$middleware = $this->middleware_provider();
-        $middleware->setup();
+		// // Run setup.
+		// $middleware = $this->middleware_provider();
+        // $middleware->setup();
 
-        $middleware->process(new Simple_Get_Call());
-        dump($middleware);
+        // $middleware->process(new Simple_Get_Call());
+        // dump($middleware);
 	}
 }

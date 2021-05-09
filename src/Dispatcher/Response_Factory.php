@@ -22,7 +22,7 @@ declare(strict_types=1);
  * @package PinkCrab\Ajax
  */
 
-namespace PinkCrab\Ajax;
+namespace PinkCrab\Ajax\Dispatcher;
 
 use PinkCrab\HTTP\HTTP;
 use Psr\Http\Message\ResponseInterface;
