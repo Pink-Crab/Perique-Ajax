@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1620573381">
+  <project timestamp="1620573381">
+    <package name="PinkCrab\Ajax">
+      <file name="/shared/httpd/php/htdocs/pc_modules/Ajax/src/Ajax.php">
+        <class name="PinkCrab\Ajax\Ajax" namespace="PinkCrab\Ajax">
+          <metrics complexity="11" methods="7" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="15" coveredelements="0"/>
+        </class>
+        <line num="88" type="method" name="get_action" visibility="public" complexity="2" crap="6.00" count="0"/>
+        <line num="89" type="stmt" count="0"/>
+        <line num="97" type="method" name="get_nonce_handle" visibility="public" complexity="2" crap="6.00" count="0"/>
+        <line num="98" type="stmt" count="0"/>
+        <line num="106" type="method" name="get_nonce_field" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="107" type="stmt" count="0"/>
+        <line num="115" type="method" name="get_logged_in" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="116" type="stmt" count="0"/>
+        <line num="124" type="method" name="get_logged_out" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="125" type="stmt" count="0"/>
+        <line num="133" type="method" name="is_valid" visibility="public" complexity="2" crap="6.00" count="0"/>
+        <line num="134" type="stmt" count="0"/>
+        <line num="135" type="stmt" count="0"/>
+        <line num="143" type="method" name="has_nonce" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="144" type="stmt" count="0"/>
+        <metrics loc="146" ncloc="58" classes="1" methods="7" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="15" coveredelements="0"/>
+      </file>
+      <file name="/shared/httpd/php/htdocs/pc_modules/Ajax/src/Response_Factory.php">
+        <class name="PinkCrab\Ajax\Response_Factory" namespace="PinkCrab\Ajax" fullPackage="Response">
+          <metrics complexity="7" methods="7" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="17" coveredelements="0"/>
+        </class>
+        <line num="36" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="46" type="method" name="createResponse" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <line num="49" type="stmt" count="0"/>
+        <line num="59" type="method" name="create" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="60" type="stmt" count="0"/>
+        <line num="69" type="method" name="success" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="70" type="stmt" count="0"/>
+        <line num="80" type="method" name="unauthorised" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="81" type="stmt" count="0"/>
+        <line num="91" type="method" name="failure" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="92" type="stmt" count="0"/>
+        <line num="102" type="method" name="not_found" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="103" type="stmt" count="0"/>
+        <metrics loc="105" ncloc="45" classes="1" methods="7" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="17" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="PinkCrab\Ajax\Dispatcher">
+      <file name="/shared/httpd/php/htdocs/pc_modules/Ajax/src/Dispatcher/Ajax_Dispatcher.php">
+        <class name="PinkCrab\Ajax\Dispatcher\Ajax_Dispatcher" namespace="PinkCrab\Ajax\Dispatcher" fullPackage="Ajax">
+          <metrics complexity="4" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="16" coveredelements="0"/>
+        </class>
+        <line num="39" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <line num="50" type="method" name="add_ajax_call" visibility="public" complexity="2" crap="6.00" count="0"/>
+        <line num="53" type="stmt" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="58" type="stmt" count="0"/>
+        <line num="59" type="stmt" count="0"/>
+        <line num="60" type="stmt" count="0"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="63" type="stmt" count="0"/>
+        <line num="70" type="method" name="execute" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="71" type="stmt" count="0"/>
+        <line num="72" type="stmt" count="0"/>
+        <metrics loc="74" ncloc="40" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="16" coveredelements="0"/>
+      </file>
+      <file name="/shared/httpd/php/htdocs/pc_modules/Ajax/src/Dispatcher/Response_Controller.php">
+        <class name="PinkCrab\Ajax\Dispatcher\Response_Controller" namespace="PinkCrab\Ajax\Dispatcher" fullPackage="Response">
+          <metrics complexity="5" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="0" elements="13" coveredelements="0"/>
+        </class>
+        <line num="41" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="45" type="stmt" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="55" type="method" name="validate_ajax" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <line num="65" type="method" name="invoke_callback" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="66" type="stmt" count="0"/>
+        <line num="75" type="method" name="create_callback" visibility="public" complexity="2" crap="6.00" count="0"/>
+        <line num="81" type="stmt" count="0"/>
+        <line num="82" type="stmt" count="0"/>
+        <line num="83" type="stmt" count="0"/>
+        <line num="84" type="stmt" count="0"/>
+        <metrics loc="86" ncloc="41" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="0" elements="13" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="PinkCrab\Ajax\Registration_Middleware">
+      <file name="/shared/httpd/php/htdocs/pc_modules/Ajax/src/Registration_Middleware/Ajax_Middleware.php">
+        <class name="PinkCrab\Ajax\Registration_Middleware\Ajax_Middleware" namespace="PinkCrab\Ajax\Registration_Middleware" fullPackage="Ajax">
+          <metrics complexity="5" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="26" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="27" type="stmt" count="0"/>
+        <line num="28" type="stmt" count="0"/>
+        <line num="30" type="method" name="process" visibility="public" complexity="2" crap="6.00" count="0"/>
+        <line num="31" type="stmt" count="0"/>
+        <line num="32" type="stmt" count="0"/>
+        <line num="34" type="stmt" count="0"/>
+        <line num="38" type="method" name="tear_down" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="39" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <metrics loc="41" ncloc="32" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+    </package>
+    <metrics files="5" loc="452" ncloc="216" classes="5" methods="24" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="47" coveredstatements="0" elements="71" coveredelements="0"/>
+  </project>
+</coverage>
