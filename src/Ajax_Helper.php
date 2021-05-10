@@ -25,6 +25,8 @@ declare(strict_types=1);
 namespace PinkCrab\Ajax;
 
 use PinkCrab\Ajax\Ajax;
+use Psr\Http\Message\ServerRequestInterface;
+
 use PinkCrab\Nonce\Nonce;
 use PinkCrab\Ajax\Ajax_Exception;
 
@@ -115,5 +117,32 @@ class Ajax_Helper {
 	 */
 	public static function get_nonce_field( string $class ): string {
 		return self::get_reflected( $class )->get_nonce_field();
+	}
+
+	/**
+	 * Extracts the args from the server request.
+	 * Based on request type GET/POST
+	 *
+	 * @param ServerRequestInterface $request
+	 * @return array<string, string>
+	 */
+	public static function extract_server_request_args( ServerRequestInterface $request ): array {
+		switch ( $request->getMethod() ) {
+			case 'POST':
+				// Return different post types.
+				if ( str_contains( $request->getHeaderLine( 'Content-Type' ), 'application/x-www-form-urlencoded;' ) ) {
+					$params = (array) $request->getParsedBody();
+				} else {
+					$params = json_decode( (string) $request->getBody(), true ) ?? array();
+				}
+				break;
+			case 'GET':
+				$params = $request->getQueryParams();
+				break;
+			default:
+				$params = array();
+				break;
+		}
+		return $params;
 	}
 }

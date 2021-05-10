@@ -41,14 +41,19 @@ class Ajax_Controller {
 	/** @var HTTP */
 	protected $http_helper;
 
+	/** @var Ajax_Request_Validator */
+	protected $request_validator;
+
 	public function __construct(
 		ServerRequestInterface $server_request,
 		Response_Factory $response_factory,
-		HTTP $http_helper
+		HTTP $http_helper,
+		Ajax_Request_Validator $request_validator
 	) {
-		$this->response_factory = $response_factory;
-		$this->server_request   = $server_request;
-		$this->http_helper      = $http_helper;
+		$this->response_factory  = $response_factory;
+		$this->server_request    = $server_request;
+		$this->http_helper       = $http_helper;
+		$this->request_validator = $request_validator;
 	}
 
 	/**
@@ -58,7 +63,7 @@ class Ajax_Controller {
 	 * @return bool
 	 */
 	public function validate_request( Ajax $ajax_class ): bool {
-		return true; //@todo WRITE IT
+		return $this->request_validator->validate( $ajax_class );
 	}
 
 	/**

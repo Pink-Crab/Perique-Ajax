@@ -14,14 +14,14 @@ declare(strict_types=1);
 namespace PinkCrab\Ajax\Tests\Unit;
 
 use WP_UnitTestCase;
+use Nyholm\Psr7\Stream;
 use PinkCrab\Nonce\Nonce;
 use PinkCrab\Ajax\Ajax_Helper;
+use PinkCrab\HTTP\HTTP_Helper;
 use PinkCrab\Ajax\Ajax_Exception;
 use Gin0115\WPUnit_Helpers\Objects;
-use PinkCrab\Ajax\Dispatcher\Ajax_Dispatcher;
 use PinkCrab\Ajax\Tests\Fixtures\Ajax\Invalid_Ajax;
 use PinkCrab\Ajax\Tests\Fixtures\Ajax\Simple_Get_Call;
-use PinkCrab\Ajax\Registration_Middleware\Ajax_Middleware;
 
 class Test_Ajax_Helper extends WP_UnitTestCase {
 
@@ -30,8 +30,8 @@ class Test_Ajax_Helper extends WP_UnitTestCase {
 		$helper = new Ajax_Helper();
 		Objects::set_property( $helper, 'class_cache', array() );
 	}
-    
-    /** @testdox A cache of all ajax classes should be created and populated with each new instance created. */
+
+	/** @testdox A cache of all ajax classes should be created and populated with each new instance created. */
 	public function test_reflected_instances_should_be_cached(): void {
 		$helper = new Ajax_Helper();
 		$helper::get_action( Simple_Get_Call::class );
@@ -85,11 +85,86 @@ class Test_Ajax_Helper extends WP_UnitTestCase {
 		$this->assertNull( Ajax_Helper::get_nonce( Invalid_Ajax::class ) );
 	}
 
-    /** @testdox It should be possible to get the nonce field (property holding nonce value in reqiest) for an Ajax class */
+	/** @testdox It should be possible to get the nonce field (property holding nonce value in reqiest) for an Ajax class */
 	public function test_nonce_field(): void {
 		$this->assertEquals(
 			Simple_Get_Call::NONCE_FIELD,
 			Ajax_Helper::get_nonce_field( Simple_Get_Call::class )
 		);
-	}	
+	}
+
+	/** @testdox It should be possible to extract all $_GET params */
+	public function test_extract_get_from_server_request(): void {
+		$request = HTTP_Helper::global_server_request()->withQueryParams(
+			array(
+				'key1' => 'get1',
+				'key2' => 'get2',
+			)
+		);
+
+		$args = Ajax_Helper::extract_server_request_args( $request );
+
+		$this->assertCount( 2, $args );
+		$this->assertArrayHasKey( 'key1', $args );
+		$this->assertArrayHasKey( 'key2', $args );
+		$this->assertEquals( 'get1', $args['key1'] );
+		$this->assertEquals( 'get2', $args['key2'] );
+	}
+
+	/** @testdox It should be possible to extract the JSON representation of all $_POST body values. */
+	public function test_extract_post_from_server_request(): void {
+		$request = HTTP_Helper::global_server_request()->withBody(
+			Stream::create(
+				json_encode(
+					array(
+						'key1' => 'post1',
+						'key2' => 'post2',
+					)
+				)
+			)
+		)->withMethod( 'POST' );
+
+		$args = Ajax_Helper::extract_server_request_args( $request );
+
+		$this->assertCount( 2, $args );
+		$this->assertArrayHasKey( 'key1', $args );
+		$this->assertArrayHasKey( 'key2', $args );
+		$this->assertEquals( 'post1', $args['key1'] );
+		$this->assertEquals( 'post2', $args['key2'] );
+	}
+
+	/** @testdox It should be possible to extract the parsed body from a urlEncode POST server request */
+	public function test_extract_urlencode_post_from_server_request(): void {
+		$request = HTTP_Helper::global_server_request()->withParsedBody(
+			array(
+				'key1' => 'urlEncode1',
+				'key2' => 'urlEncode2',
+
+			)
+		)->withMethod( 'POST' )
+		->withHeader( 'Content-Type', 'application/x-www-form-urlencoded;' );
+
+		$args = Ajax_Helper::extract_server_request_args( $request );
+
+		$this->assertCount( 2, $args );
+		$this->assertArrayHasKey( 'key1', $args );
+		$this->assertArrayHasKey( 'key2', $args );
+		$this->assertEquals( 'urlEncode1', $args['key1'] );
+		$this->assertEquals( 'urlEncode2', $args['key2'] );
+	}
+
+	/** @testdox Any method which is not GET or POST should return a blank array when extracting from Server Request */
+	public function test_extract_empty_array_for_none_get_post_server_request(): void {
+		$request = HTTP_Helper::global_server_request()->withParsedBody(
+			array(
+				'key1' => 'urlEncode1',
+				'key2' => 'urlEncode2',
+
+			)
+		)->withMethod( 'NOOP' );
+
+		$args = Ajax_Helper::extract_server_request_args( $request );
+
+		$this->assertCount( 0, $args );
+	}
 }

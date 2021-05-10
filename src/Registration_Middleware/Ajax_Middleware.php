@@ -27,6 +27,12 @@ class Ajax_Middleware implements Registration_Middleware {
 		$this->dispatcher = $dispatcher;
 	}
 
+	/**
+	 * Add all valid ajax calls to the dispatcher.
+	 *
+	 * @param object $class
+	 * @return object
+	 */
 	public function process( $class ) {
 		if ( is_a( $class, Ajax::class ) ) {
 			$this->dispatcher->add_ajax_call( $class );
@@ -34,8 +40,13 @@ class Ajax_Middleware implements Registration_Middleware {
 		return $class;
 	}
 
-	public function setup(): void {}
+	public function setup(): void { /*noOp*/ }
 
+    /**
+     * Re
+     *
+     * @return void
+     */
 	public function tear_down(): void {
 		$this->dispatcher->execute();
 	}

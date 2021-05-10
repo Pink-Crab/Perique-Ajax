@@ -25,6 +25,8 @@ declare(strict_types=1);
 namespace PinkCrab\Ajax\Dispatcher;
 
 use PinkCrab\Ajax\Ajax;
+use PinkCrab\Nonce\Nonce;
+use PinkCrab\Ajax\Ajax_Helper;
 use Psr\Http\Message\ServerRequestInterface;
 
 class Ajax_Request_Validator {
@@ -32,8 +34,8 @@ class Ajax_Request_Validator {
 	/** @var ServerRequestInterface */
 	protected $server_request;
 
-	public function __construct( ServerRequestInterface $server_requet ) {
-		$this->server_requet = $server_requet;
+	public function __construct( ServerRequestInterface $server_request ) {
+		$this->server_request = $server_request;
 	}
 
 	/**
@@ -46,6 +48,17 @@ class Ajax_Request_Validator {
 		if ( ! $ajax->has_nonce() ) {
 			return true;
 		}
+
+		// Find nonce value in request
+		$nonce_value = $this->find_nonce( $ajax->get_nonce_field() );
+
+		// If no nonce value found in request.
+		if ( is_null( $nonce_value ) ) {
+			return false;
+		}
+
+		return ( new Nonce( $ajax->get_nonce_handle() ) )
+			->validate( $nonce_value );
 	}
 
 	/**
@@ -55,17 +68,11 @@ class Ajax_Request_Validator {
 	 * @return string|null
 	 */
 	protected function find_nonce( string $nonce_field ): ?string {
-		# code...
+		$args = Ajax_Helper::extract_server_request_args( $this->server_request );
+
+		return \array_key_exists( $nonce_field, $args )
+			? $args[ $nonce_field ]
+			: null;
 	}
-    
-    /**
-     * Attempts to extract the args from the request.
-     * Uses the request type to determine the location and format.
-     *
-     * @return array<string, string>
-     */
-    protected function extract_args_from_request(): array
-    {
-        # code...
-    }
+
 }
