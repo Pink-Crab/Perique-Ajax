@@ -24,6 +24,5 @@ class Test_Ajax_Get_Failures extends WP_UnitTestCase {
 			$this->createMock( Ajax_Dispatcher::class )
 		);
 
-        dump($middleware);
 	}
 }

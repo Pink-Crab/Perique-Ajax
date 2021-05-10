@@ -31,21 +31,21 @@ class Ajax_Exception extends Exception {
 	/**
 	 * Class is not an Ajax::class
 	 * @code 1
-     * @param string $operation The operation being carries out.
+	 * @param string $operation The operation being carries out.
 	 * @return Ajax_Exception
 	 */
-	public static function none_ajax_model(string $operation = 'unknown operation'): Ajax_Exception {
+	public static function none_ajax_model( string $operation = 'unknown operation' ): Ajax_Exception {
 		$message = 'None Ajax Model passed to ' . $operation;
 		return new Ajax_Exception( $message, 1 );
 	}
 
-    /**
+	/**
 	 * Ajax::class has no defined action.
 	 * @code 2
-     * @param string $class Ajax class
+	 * @param string $class Ajax class
 	 * @return Ajax_Exception
 	 */
-    public static function undefined_action(string $class): Ajax_Exception {
+	public static function undefined_action( string $class ): Ajax_Exception {
 		$message = "{$class} has no defined action property";
 		return new Ajax_Exception( $message, 2 );
 	}

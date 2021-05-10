@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace PinkCrab\Ajax\Dispatcher;
 
+use Nyholm\Psr7\Stream;
 use PinkCrab\HTTP\HTTP;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -44,20 +45,9 @@ class Response_Factory implements ResponseFactoryInterface {
 	 * @param string $reasonPhrase
 	 */
 	public function createResponse( int $code = 200, string $reasonPhrase = '' ): ResponseInterface {
-		return $this->http_helper->response()
+		return $this->http->psr7_response()
 			->withStatus( $code )
-			->withBody( $reasonPhrase );
-	}
-
-	/**
-	 * Create a custom response with a defined code and status.
-	 *
-	 * @param int $code
-	 * @param array $payload
-	 * @return \Psr\Http\Message\ResponseInterface
-	 */
-	public function create( int $code, array $payload = array() ): ResponseInterface {
-		return $this->createResponse( $code, $this->http->stream_from_scalar( $payload ) );
+			->withBody( Stream::create( $reasonPhrase ) );
 	}
 
 	/**
@@ -67,7 +57,7 @@ class Response_Factory implements ResponseFactoryInterface {
 	 * @return ResponseInterface
 	 */
 	public function success( array $payload ): ResponseInterface {
-		return $this->createResponse( 200, $this->http->stream_from_scalar( $payload ) );
+		return $this->createResponse( 200, json_encode( $payload ) ?: '' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.json_encode_json_encode
 	}
 
 	/**
@@ -78,7 +68,7 @@ class Response_Factory implements ResponseFactoryInterface {
 	 * @return ResponseInterface
 	 */
 	public function unauthorised( array $payload = array( 'error' => 'unauthorised' ) ): ResponseInterface {
-		return $this->createResponse( 401, $this->http->stream_from_scalar( $payload ) );
+		return $this->createResponse( 401, json_encode( $payload ) ?: '' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.json_encode_json_encode
 	}
 
 	/**
@@ -89,7 +79,7 @@ class Response_Factory implements ResponseFactoryInterface {
 	 * @return ResponseInterface
 	 */
 	public function failure( array $payload = array( 'error' => 'error' ) ): ResponseInterface {
-		return $this->createResponse( 500, $this->http->stream_from_scalar( $payload ) );
+		return $this->createResponse( 500, json_encode( $payload ) ?: '' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.json_encode_json_encode
 	}
 
 	/**
@@ -100,6 +90,6 @@ class Response_Factory implements ResponseFactoryInterface {
 	 * @return ResponseInterface
 	 */
 	public function not_found( array $payload = array( 'error' => 'not found' ) ): ResponseInterface {
-		return $this->createResponse( 404, $this->http->stream_from_scalar( $payload ) );
+		return $this->createResponse( 404, json_encode( $payload ) ?: '' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.json_encode_json_encode
 	}
 }

@@ -26,93 +26,94 @@ namespace PinkCrab\Ajax;
 
 use PinkCrab\Ajax\Ajax;
 use PinkCrab\Nonce\Nonce;
+use PinkCrab\Ajax\Ajax_Exception;
+
 
 use ReflectionClass;
 
 
 class Ajax_Helper {
 
-    /**
-     * Cache of all reflected ajax class, constructed.
-     *
-     * @var array<string,Ajax>
-     */
-    private static $class_cache = []; 
+	/**
+	 * Cache of all reflected ajax class, constructed.
+	 *
+	 * @var array<string,Ajax>
+	 */
+	private static $class_cache = array();
 
-    /**
-     * Returns the reflection of an Ajax instance.
-     * Either from cache or created without constructor.
-     *
-     * @param string $class
-     * @return Ajax
-     * @throws Ajax_Exception (code 1) If none valid Ajax class passed.
-     */
-    private static function get_reflected(string $class): Ajax {
-        if(! \is_subclass_of($class, Ajax::class)){
-            throw Ajax_Exception::none_ajax_model('get reflection');
-        }
-        
-        if(! array_key_exists($class, self::$class_cache)){
-            $reflection = new ReflectionClass($class);
-            self::$class_cache[$class] = $reflection->newInstanceWithoutConstructor();
-        }
+	/**
+	 * Returns the reflection of an Ajax instance.
+	 * Either from cache or created without constructor.
+	 *
+	 * @param string $class
+	 * @return Ajax
+	 * @throws Ajax_Exception (code 1) If none valid Ajax class passed.
+	 */
+	private static function get_reflected( string $class ): Ajax {
+		if ( ! \is_subclass_of( $class, Ajax::class ) ) {
+			throw Ajax_Exception::none_ajax_model( 'get reflection' );
+		}
 
-        return self::$class_cache[$class];
-    }
-    
-    /**
-     * Gets the action from an Ajax class 
-     * uses reflection to create instance without using the constructor.
-     *
-     * @param string $class
-     * @return string|null
-     * @throws Ajax_Exception (code 2) If no action defined
-     */
-    public static function get_action(string $class):? string {
-        $instance = self::get_reflected($class);
+		if ( ! array_key_exists( $class, self::$class_cache ) ) {
+			$reflection                  = new ReflectionClass( $class );
+			self::$class_cache[ $class ] = $reflection->newInstanceWithoutConstructor();
+		}
 
-        if(! $instance->has_valid_action()){
-            throw Ajax_Exception::undefined_action($class);
-        }
+		return self::$class_cache[ $class ];
+	}
 
-        return $instance->get_action();
-    }
+	/**
+	 * Gets the action from an Ajax class
+	 * uses reflection to create instance without using the constructor.
+	 *
+	 * @param string $class
+	 * @return string|null
+	 * @throws Ajax_Exception (code 2) If no action defined
+	 */
+	public static function get_action( string $class ):? string {
+		$instance = self::get_reflected( $class );
 
-    /**
-     * Returns if the passed ajax class  has a nonce
-     *
-     * @param string $class
-     * @return boolean
-     * @throws Ajax_Exception (code 1) If none valid Ajax class passed.
-     */
-    public static function has_nonce(string $class): bool {
-        return self::get_reflected($class)->has_nonce();
-    }
+		if ( ! $instance->has_valid_action() ) {
+			throw Ajax_Exception::undefined_action( $class );
+		}
 
-    /**
-     * Returns a Nonce object if the passed class has a none handle defined.
-     *
-     * @param string $class
-     * @return Nonce|null
-     * @throws Ajax_Exception (code 1) If none valid Ajax class passed.
-     */
-    public static function get_nonce(string $class): ?Nonce {
-        $instance = self::get_reflected($class);
+		return $instance->get_action();
+	}
 
-        return $instance->has_nonce()
-            ? new Nonce($instance->get_nonce_handle())
-            : null;
-    }
+	/**
+	 * Returns if the passed ajax class  has a nonce
+	 *
+	 * @param string $class
+	 * @return boolean
+	 * @throws Ajax_Exception (code 1) If none valid Ajax class passed.
+	 */
+	public static function has_nonce( string $class ): bool {
+		return self::get_reflected( $class )->has_nonce();
+	}
 
-    /**
-     * Return the defined nonce field from the Ajax class passed
-     *
-     * @param string $class
-     * @return string
-     * @throws Ajax_Exception (code 1) If none valid Ajax class passed.
-     */
-    public static function get_nonce_field(string $class): string
-    {
-        return self::get_reflected($class)->get_nonce_field();
-    }
+	/**
+	 * Returns a Nonce object if the passed class has a none handle defined.
+	 *
+	 * @param string $class
+	 * @return Nonce|null
+	 * @throws Ajax_Exception (code 1) If none valid Ajax class passed.
+	 */
+	public static function get_nonce( string $class ): ?Nonce {
+		$instance = self::get_reflected( $class );
+
+		return $instance->has_nonce()
+			? new Nonce( $instance->get_nonce_handle() )
+			: null;
+	}
+
+	/**
+	 * Return the defined nonce field from the Ajax class passed
+	 *
+	 * @param string $class
+	 * @return string
+	 * @throws Ajax_Exception (code 1) If none valid Ajax class passed.
+	 */
+	public static function get_nonce_field( string $class ): string {
+		return self::get_reflected( $class )->get_nonce_field();
+	}
 }

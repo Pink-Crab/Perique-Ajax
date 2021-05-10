@@ -26,7 +26,6 @@ namespace PinkCrab\Ajax\Dispatcher;
 
 use Closure;
 use PinkCrab\Ajax\Ajax;
-use PinkCrab\Ajax\Dispatcher\Response_Factory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 

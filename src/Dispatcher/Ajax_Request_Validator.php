@@ -25,52 +25,47 @@ declare(strict_types=1);
 namespace PinkCrab\Ajax\Dispatcher;
 
 use PinkCrab\Ajax\Ajax;
-use PinkCrab\Loader\Hook_Loader;
-use PinkCrab\Ajax\Ajax_Exception;
-use PinkCrab\Ajax\Dispatcher\Ajax_Controller;
+use Psr\Http\Message\ServerRequestInterface;
 
-class Ajax_Dispatcher {
+class Ajax_Request_Validator {
 
-	/** @var Hook_Loader */
-	protected $loader;
+	/** @var ServerRequestInterface */
+	protected $server_request;
 
-	/** @var Ajax_Controller */
-	protected $ajax_controller;
-
-	public function __construct( Ajax_Controller $ajax_controller ) {
-		$this->loader          = new Hook_Loader();
-		$this->ajax_controller = $ajax_controller;
+	public function __construct( ServerRequestInterface $server_requet ) {
+		$this->server_requet = $server_requet;
 	}
 
 	/**
-	 * Adds an ajax call to the loader
+	 * Validates a ajax call based on current request.
 	 *
 	 * @param \PinkCrab\Ajax\Ajax $ajax
-	 * @return void
-	 * @throws Ajax_Exception (code 2) If no action defined
+	 * @return bool
 	 */
-	public function add_ajax_call( Ajax $ajax ): void {
-
-		// If ajax is not valid (no action), skip
-		if ( ! $ajax->has_valid_action() ) {
-			throw Ajax_Exception::undefined_action( \get_class( $ajax ) );
+	public function validate( Ajax $ajax ): bool {
+		if ( ! $ajax->has_nonce() ) {
+			return true;
 		}
-
-		$this->loader->ajax(
-			$ajax->get_action(),
-			$this->ajax_controller->create_callback( $ajax ),
-			$ajax->get_logged_out(),
-			$ajax->get_logged_in()
-		);
 	}
 
 	/**
-	 * Register all hooks
+	 * Attempts to extract the nonce from the request
 	 *
-	 * @return void
+	 * @param string $nonce_field
+	 * @return string|null
 	 */
-	public function execute(): void {
-		$this->loader->register_hooks();
+	protected function find_nonce( string $nonce_field ): ?string {
+		# code...
 	}
-
+    
+    /**
+     * Attempts to extract the args from the request.
+     * Uses the request type to determine the location and format.
+     *
+     * @return array<string, string>
+     */
+    protected function extract_args_from_request(): array
+    {
+        # code...
+    }
 }
