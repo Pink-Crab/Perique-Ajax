@@ -20,6 +20,7 @@ declare(strict_types=1);
  * @author Glynn Quelch <glynn.quelch@gmail.com>
  * @license http://www.opensource.org/licenses/mit-license.html  MIT License
  * @package PinkCrab\Ajax
+ * @phpcs:disable WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
  */
 
 namespace PinkCrab\Ajax\Dispatcher;
@@ -47,6 +48,7 @@ class Response_Factory implements ResponseFactoryInterface {
 	public function createResponse( int $code = 200, string $reasonPhrase = '' ): ResponseInterface {
 		return $this->http->psr7_response()
 			->withStatus( $code )
+			->withHeader( 'Content-Type', 'application/json; charset=' . get_option( 'blog_charset' ) )
 			->withBody( Stream::create( $reasonPhrase ) );
 	}
 

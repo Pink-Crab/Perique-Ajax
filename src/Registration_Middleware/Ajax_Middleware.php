@@ -40,13 +40,15 @@ class Ajax_Middleware implements Registration_Middleware {
 		return $class;
 	}
 
-	public function setup(): void { /*noOp*/ }
+	public function setup(): void {
+		/*noOp*/
+	}
 
-    /**
-     * Re
-     *
-     * @return void
-     */
+	/**
+	 * Re
+	 *
+	 * @return void
+	 */
 	public function tear_down(): void {
 		$this->dispatcher->execute();
 	}

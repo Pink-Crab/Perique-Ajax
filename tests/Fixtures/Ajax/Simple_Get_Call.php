@@ -22,7 +22,7 @@ class Simple_Get_Call extends Ajax {
 
 	public const ACTION       = 'simple_get_call_action';
 	public const NONCE_HANDLE = 'simple_get_call_nonce';
-	public const NONCE_FIELD = 'simple_get_call_nonce_field';
+	public const NONCE_FIELD  = 'simple_get_call_nonce_field';
 
 	/**
 	 * Define the action to call.
@@ -53,6 +53,6 @@ class Simple_Get_Call extends Ajax {
 		ServerRequestInterface $request,
 		ResponseFactoryInterface $response_factory
 	): ResponseInterface {
-		print __CLASS__;
+		return $response_factory->success( array( 'success' => __CLASS__ ) );
 	}
 }

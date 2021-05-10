@@ -57,6 +57,7 @@ class Ajax_Request_Validator {
 			return false;
 		}
 
+		/* @phpstan-ignore-next-line, nonce handle checked at start of method*/
 		return ( new Nonce( $ajax->get_nonce_handle() ) )
 			->validate( $nonce_value );
 	}
