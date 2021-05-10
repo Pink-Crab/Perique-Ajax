@@ -102,7 +102,7 @@ class Ajax_Helper {
 		$instance = self::get_reflected( $class );
 
 		return $instance->has_nonce()
-			? new Nonce( $instance->get_nonce_handle() )
+			? new Nonce( $instance->get_nonce_handle() ?? '' ) // has_nonce conditional should catch null here
 			: null;
 	}
 

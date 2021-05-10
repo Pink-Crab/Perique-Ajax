@@ -51,13 +51,12 @@ class Ajax_Dispatcher {
 	 */
 	public function add_ajax_call( Ajax $ajax ): void {
 
-		// If ajax is not valid (no action), skip
 		if ( ! $ajax->has_valid_action() ) {
 			throw Ajax_Exception::undefined_action( \get_class( $ajax ) );
 		}
 
 		$this->loader->ajax(
-			$ajax->get_action(),
+			$ajax->get_action(), /* @phpstan-ignore-line, action existance checked above */
 			$this->ajax_controller->create_callback( $ajax ),
 			$ajax->get_logged_out(),
 			$ajax->get_logged_in()

@@ -31,6 +31,7 @@ class Ajax_Middleware implements Registration_Middleware {
 		if ( is_a( $class, Ajax::class ) ) {
 			$this->dispatcher->add_ajax_call( $class );
 		}
+		return $class;
 	}
 
 	public function setup(): void {}

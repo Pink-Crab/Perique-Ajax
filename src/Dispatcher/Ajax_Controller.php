@@ -26,6 +26,7 @@ namespace PinkCrab\Ajax\Dispatcher;
 
 use Closure;
 use PinkCrab\Ajax\Ajax;
+use PinkCrab\HTTP\HTTP;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -37,12 +38,17 @@ class Ajax_Controller {
 	/** @var Response_Factory */
 	protected $response_factory;
 
+	/** @var HTTP */
+	protected $http_helper;
+
 	public function __construct(
 		ServerRequestInterface $server_request,
-		Response_Factory $response_factory
+		Response_Factory $response_factory,
+		HTTP $http_helper
 	) {
 		$this->response_factory = $response_factory;
 		$this->server_request   = $server_request;
+		$this->http_helper      = $http_helper;
 	}
 
 	/**
@@ -69,17 +75,20 @@ class Ajax_Controller {
 	 * Returns the Closure for a ajax request.
 	 *
 	 * @param \PinkCrab\Ajax\Ajax $ajax_class
-	 * @return \Closure
+	 * @return \Closure():noreturn
 	 */
 	public function create_callback( Ajax $ajax_class ): Closure {
 		/**
 		 * @param \PinkCrab\Ajax\Ajax $ajax_class
-		 * @return \Psr\Http\Message\ResponseInterface
+		 * @return noreturn
 		 */
-		return function() use ( $ajax_class ): ResponseInterface {
-			return $this->validate_request( $ajax_class )
+		return function() use ( $ajax_class ): void {
+			$response = $this->validate_request( $ajax_class )
 				? $this->invoke_callback( $ajax_class )
 				: $this->response_factory->unauthorised();
+
+			$this->http_helper->emit_psr7_response( $response );
+			\wp_die();
 		};
 	}
 }

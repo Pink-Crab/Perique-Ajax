@@ -17,5 +17,8 @@ use WP_UnitTestCase;
 
 class Test_Ajax_Controller extends WP_UnitTestCase {
 
-	
+	public function test(Type $var = null)
+    {
+        # code...
+    }
 }
