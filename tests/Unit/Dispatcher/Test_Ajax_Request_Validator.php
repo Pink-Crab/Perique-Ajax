@@ -51,8 +51,6 @@ class Test_Ajax_Request_Validator extends WP_UnitTestCase {
 	public function test_validation_fail_if_invalid_nonce_in_request(): void {
 		$ajax = new Simple_Get_Call();
 
-		$nonce = new Nonce( $ajax->get_nonce_handle() );
-
 		$validator = new Ajax_Request_Validator(
 			HTTP_Helper::global_server_request()->withQueryParams(
 				array(
