@@ -224,7 +224,7 @@ Checks if passed Ajax Model uses a nonce (has nonce_handle defined). Will throw 
 ****
 
 **public static function get_nonce( string $class )**
-> @param string $class  
+> @param string $class   
 > @return Nonce|null  
 > @throws Ajax_Exception (code 1) If none valid Ajax class passed.
 
@@ -234,7 +234,7 @@ Returns a populated [Nonce object](https://github.com/Pink-Crab/Nonce) if the cl
 
 **public static function get_nonce_field( string $class )**
 > @param string $class  
-> @return string
+> @return string  
 > @throws Ajax_Exception (code 1) If none valid Ajax class passed.
 
 Returns the property expected to find the Nonce token held in the ServerRequest. If not set in the Ajax Model will use the default of 'nonce'. Will throw an exception if the class is not extending the Abstract Ajax Model.
@@ -242,7 +242,7 @@ Returns the property expected to find the Nonce token held in the ServerRequest.
 ****
 
 **public static function extract_server_request_args( ServerRequestInterface $request )**
-> @param ServerRequestInterface $request 
+> @param ServerRequestInterface $request  
 > @return array<string, mixed>
 
 When the current ServerRequest is passed in, it will return the Params or Body of the request based on the HTTP Method. Works for $_GET and $_POST (including urlEncoded values.). Returned back in a key=>value array, returns a blank array if unknown method or request is empty. Should not be used if you planning to use a mix of QueryParams and BodyArguments.
@@ -254,8 +254,8 @@ We make use of the PSR HTTP Messaging interface throughout this module, as a res
 ### Methods ###
 
 **public function createResponse( int $code = 200, string $reasonPhrase = '' )**
-> @param int $code The HTTP status code. Defaults to 200.
-> @param string $reasonPhrase
+> @param int $code The HTTP status code. Defaults to 200.  
+> @param string $reasonPhrase  
 > @return Psr\Http\Message\ResponseInterface
 
 Used to create a general response, must be passed a string (JSON) representation of the response body.
@@ -263,7 +263,7 @@ Used to create a general response, must be passed a string (JSON) representation
 ****
 
 **public function success( array $payload = [] )**
-> @param array<mixed> $payload
+> @param array<mixed> $payload  
 > @return Psr\Http\Message\ResponseInterface
 
 Used to return a 200 response with the passed payload (array) represented as JSON in the response body.
@@ -271,24 +271,24 @@ Used to return a 200 response with the passed payload (array) represented as JSO
 ****
 
 **public function unauthorised( array $payload = ['error' => 'unauthorised'] )**
-> @param array<mixed> $payload
-> @return Psr\Http\Message\ResponseInterface
+> @param array<mixed> $payload   
+> @return Psr\Http\Message\ResponseInterface  
 
 Used to return a 401 response with the passed payload (array) represented as JSON in the response body. Defaults to ['error' => 'unauthorised'] if no body passed.
 
 ****
 
 **public function failure( array $payload = ['error' => 'error'] )**
-> @param array<mixed> $payload
-> @return Psr\Http\Message\ResponseInterface
+> @param array<mixed> $payload  
+> @return Psr\Http\Message\ResponseInterface  
 
 Used to return a 500 response with the passed payload (array) represented as JSON in the response body. Defaults to ['error' => 'error'] if no body passed.
 
 ****
 
 **public function not_found( array $payload = ['error' => 'not found'] )**
-> @param array<mixed> $payload
-> @return Psr\Http\Message\ResponseInterface
+> @param array<mixed> $payload  
+> @return Psr\Http\Message\ResponseInterface  
 
 Used to return a 404 response with the passed payload (array) represented as JSON in the response body. Defaults to ['error' => 'not found'] if no body passed.
 
