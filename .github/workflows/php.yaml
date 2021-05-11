@@ -2,7 +2,7 @@ name: GitHub_CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, develop ]
   pull_request:
     branches: [ master ]
 
@@ -56,6 +56,6 @@ jobs:
         run: composer all
 
       - name: Codecov
-        run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.REGISTERABLES_CODECOV }}
+        run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_AJAX }}
 
       
