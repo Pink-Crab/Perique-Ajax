@@ -80,14 +80,104 @@ class My_Ajax extends \PinkCrab\Ajax\Ajax {...}
 
 ### Properties ###
 
+****
+
 **protected string $action;**
-> @type string The ajax action handle.  
-> @required
+> @type string  
+> **@required**
 
 The action used when registering the ajax call and should be passed as part of the payload.
 
+****
 
 **protected string|null $nonce_handle;**
-> @type string|null The nonce handle..  
+> @type string|null 
 
 The handle used for the nonce which is created, if not set will not do a nonce check with the ajax call. This is useful if you want to use an alteranive request verification.
+
+****
+
+**protected string $nonce_field;**
+> @type string  
+> *@default '**nonce**'*
+
+The property in the request which is used to verify the nonce. If not defined will default to **nonce**.
+
+****
+
+**protected bool $logged_in;**
+> @type bool  
+> *@default **true***
+
+If true will set the piv_ ajax hook. Allowing logged in user to use this call.
+
+****
+
+**protected bool $logged_out;**
+> @type bool  
+> *@default **true***
+
+If true will set the non_piv_ ajax hook. Allowing logged out user to use this call.
+
+****
+
+### Methods ###
+
+**public function callback( ServerRequestInterface $request, ResponseFactoryInterface $response_factory )**
+> @param \Psr\Http\Message\ServerRequestInterface $request  
+> @param \Psr\Http\Message\ResponseFactoryInterface $response_factory  
+> @return \Psr\Http\Message\ResponseInterface  
+
+The callback method, called if the request has been validated. Passed in the current request and has access to all depenencies injected into model. Callback must return a valid HTTP Response (See Response_Factory for more details)
+
+### Example ###
+
+```php
+// Ajax Model
+class My_Ajax extends \PinkCrab\Ajax\Ajax{
+
+    // Define the action and nonce handle.
+    protected $action = 'my_ajax_action';
+    protected $nonce_handle = 'my_ajax_nonce';
+
+    // Inject services to handle all logic & functionality
+    protected $some_service;
+
+    public function __construct(Some_Service $some_service){
+        $this->some_service = $some_service;
+    }
+
+    // Return back a 200 response with some payload in the body.
+    public function callback( ServerRequestInterface $request, ResponseFactoryInterface $response_factory ): ResponseInterface{
+        return $response_factory->success([
+            'some_data' => $this->some_service->some_method()
+        ]);
+    }
+}
+
+// Localised values passed to enqueue
+[
+    'nonce'   => Ajax_Helper::get_nonce(My_Ajax::class)->token,
+    'action'  => Ajax_Helper::get_action(My_Ajax::class),
+    'ajaxUrl' => admin_url( 'admin-ajax.php' )
+]
+
+```
+```js
+// The Ajax Call.
+jQuery(".some_action").click( function(e) {
+    e.preventDefault(); 
+    jQuery.ajax({
+        type : "POST",
+        dataType : "json",
+        url : localised.ajaxUrl,
+        data : {
+            action: localised.action, 
+            nonce: localised.nonce
+        },
+        success: function(response) {
+            // Do domething
+        }
+    }); 
+});
+```
