@@ -44,6 +44,15 @@ class Ajax_Helper {
 	private static $class_cache = array();
 
 	/**
+	 * Returns the admin ajax url.
+	 *
+	 * @return string
+	 */
+	public static function admin_ajax_url(): string {
+		return admin_url( 'admin-ajax.php' );
+	}
+
+	/**
 	 * Returns the reflection of an Ajax instance.
 	 * Either from cache or created without constructor.
 	 *
@@ -70,6 +79,7 @@ class Ajax_Helper {
 	 *
 	 * @param string $class
 	 * @return string|null
+	 * @throws Ajax_Exception (code 1) If none valid Ajax class passed.
 	 * @throws Ajax_Exception (code 2) If no action defined
 	 */
 	public static function get_action( string $class ):? string {

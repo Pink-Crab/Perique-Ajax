@@ -58,7 +58,7 @@ class Response_Factory implements ResponseFactoryInterface {
 	 * @param array<mixed> $payload
 	 * @return ResponseInterface
 	 */
-	public function success( array $payload ): ResponseInterface {
+	public function success( array $payload = array() ): ResponseInterface {
 		return $this->createResponse( 200, json_encode( $payload ) ?: '' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.json_encode_json_encode
 	}
 
