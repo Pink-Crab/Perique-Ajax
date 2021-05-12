@@ -53,7 +53,7 @@ class Ajax_Exception extends Exception {
 	/**
 	 * Exception caught during callback execution
 	 * @code 3
-	 * @param string $Exception Caught exception.
+	 * @param Exception $excetion Caught exception.
 	 * @return Ajax_Exception
 	 */
 	public static function callback_execution_error( Exception $excetion ): Ajax_Exception {

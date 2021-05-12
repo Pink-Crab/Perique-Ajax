@@ -76,7 +76,7 @@ class Ajax_Controller {
 	 */
 	public function invoke_callback( Ajax $ajax_class ): ResponseInterface {
 		return $ajax_class->callback(
-			\apply_filters( Ajax_Hooks::CALLBACK_REQUEST_FILTER, $this->server_request, $ajax_class ),
+			\apply_filters( Ajax_Hooks::CALLBACK_REQUEST_FILTER, $this->server_request, $ajax_class ), /* @phpstan-ignore-line */
 			$this->response_factory
 		);
 	}
@@ -107,8 +107,8 @@ class Ajax_Controller {
 					)
 				);
 			}
-
 			$this->http_helper->emit_psr7_response(
+				/** @phpstan-ignore-next-line */
 				\apply_filters( Ajax_Hooks::CALLBACK_RESPONSE_FILTER, $response, $ajax_class )
 			);
 
