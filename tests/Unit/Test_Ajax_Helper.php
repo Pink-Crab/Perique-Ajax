@@ -21,7 +21,7 @@ use PinkCrab\HTTP\HTTP_Helper;
 use PinkCrab\Ajax\Ajax_Exception;
 use Gin0115\WPUnit_Helpers\Objects;
 use PinkCrab\Ajax\Tests\Fixtures\Ajax\Invalid_Ajax;
-use PinkCrab\Ajax\Tests\Fixtures\Ajax\Simple_Get_Call;
+use PinkCrab\Ajax\Tests\Fixtures\Ajax\Logged_In_Out_Ajax;
 
 class Test_Ajax_Helper extends WP_UnitTestCase {
 
@@ -34,9 +34,9 @@ class Test_Ajax_Helper extends WP_UnitTestCase {
 	/** @testdox A cache of all ajax classes should be created and populated with each new instance created. */
 	public function test_reflected_instances_should_be_cached(): void {
 		$helper = new Ajax_Helper();
-		$helper::get_action( Simple_Get_Call::class );
+		$helper::get_action( Logged_In_Out_Ajax::class );
 		$this->assertArrayHasKey(
-			Simple_Get_Call::class,
+			Logged_In_Out_Ajax::class,
 			Objects::get_property( $helper, 'class_cache' )
 		);
 	}
@@ -45,8 +45,8 @@ class Test_Ajax_Helper extends WP_UnitTestCase {
 	public function test_get_ajax_handle(): void {
 		// Valid ajax class
 		$this->assertEquals(
-			Simple_Get_Call::ACTION,
-			Ajax_Helper::get_action( Simple_Get_Call::class )
+			Logged_In_Out_Ajax::ACTION,
+			Ajax_Helper::get_action( Logged_In_Out_Ajax::class )
 		);
 	}
 
@@ -66,16 +66,16 @@ class Test_Ajax_Helper extends WP_UnitTestCase {
 
 	/** @testdox It should be possible to check if an ajax class uses a nonce */
 	public function test_has_nonce(): void {
-		$this->assertTrue( Ajax_Helper::has_nonce( Simple_Get_Call::class ) );
+		$this->assertTrue( Ajax_Helper::has_nonce( Logged_In_Out_Ajax::class ) );
 		$this->assertFalse( Ajax_Helper::has_nonce( Invalid_Ajax::class ) );
 	}
 
 	/** @testdox It should be possible to get a nonce object for an Ajax class which has a defined nonce handle */
 	public function test_get_nonce(): void {
-		$nonce = Ajax_Helper::get_nonce( Simple_Get_Call::class );
+		$nonce = Ajax_Helper::get_nonce( Logged_In_Out_Ajax::class );
 		$this->assertInstanceOf( Nonce::class, $nonce );
 		$this->assertEquals(
-			Simple_Get_Call::NONCE_HANDLE,
+			Logged_In_Out_Ajax::NONCE_HANDLE,
 			Objects::get_property( $nonce, 'action' )
 		);
 	}
@@ -88,8 +88,8 @@ class Test_Ajax_Helper extends WP_UnitTestCase {
 	/** @testdox It should be possible to get the nonce field (property holding nonce value in reqiest) for an Ajax class */
 	public function test_nonce_field(): void {
 		$this->assertEquals(
-			Simple_Get_Call::NONCE_FIELD,
-			Ajax_Helper::get_nonce_field( Simple_Get_Call::class )
+			Logged_In_Out_Ajax::NONCE_FIELD,
+			Ajax_Helper::get_nonce_field( Logged_In_Out_Ajax::class )
 		);
 	}
 

@@ -1,15 +1,10 @@
 <?xml version="1.0"?>
-<phpunit
-    bootstrap="tests/bootstrap.php"
-    backupGlobals="false"
-    colors="true"
-    convertErrorsToExceptions="true"
-    convertNoticesToExceptions="true"
-    convertWarningsToExceptions="true"
-    >
+<phpunit bootstrap="tests/bootstrap.php" backupGlobals="false" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true">
     <testsuites>
         <testsuite name="settings_pages">
-            <directory prefix="Test_" suffix=".php">./tests/</directory>
+            <directory prefix="Test_" suffix=".php">./tests/Unit</directory>
+            <directory prefix="Test_" suffix=".php">./tests/Intergration</directory>
+            <exclude>./tests/Fixtures/Ajax_BaseCase.php</exclude>
         </testsuite>
     </testsuites>
 
@@ -21,9 +16,10 @@
 
     <php>
         <env name="WP_PHPUNIT__TESTS_CONFIG" value="tests/wp-config.php" />
+        <ini name="memory_limit" value="512M" />
     </php>
 
     <logging>
-        <log type="coverage-clover" target="clover.xml"/>
+        <log type="coverage-clover" target="clover.xml" />
     </logging>
 </phpunit>

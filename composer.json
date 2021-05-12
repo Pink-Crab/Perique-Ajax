@@ -36,13 +36,9 @@
         "yoast/phpunit-polyfills": "^0.2.0",
         "gin0115/wpunit-helpers": "~1.0.0"
     },
-    "repositories": [{
-        "type": "vcs",
-        "url": "https://github.com/Pink-Crab/Perique.git"
-    }],
     "require": {
         "php": ">=7.1.0",
-        "pinkcrab/perique": "0.5.*",
+        "pinkcrab/perique-framework-core": "0.5.*",
         "pinkcrab/http": "0.2.*",
         "pinkcrab/enqueue": "1.*",
         "pinkcrab/wp-nonce": "dev-master"

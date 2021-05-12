@@ -25,8 +25,10 @@ declare(strict_types=1);
 namespace PinkCrab\Ajax\Dispatcher;
 
 use Closure;
+use Exception;
 use PinkCrab\Ajax\Ajax;
 use PinkCrab\HTTP\HTTP;
+use PinkCrab\Ajax\Ajax_Hooks;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -73,7 +75,10 @@ class Ajax_Controller {
 	 * @return \Psr\Http\Message\ResponseInterface
 	 */
 	public function invoke_callback( Ajax $ajax_class ): ResponseInterface {
-		return $ajax_class->callback( $this->server_request, $this->response_factory );
+		return $ajax_class->callback(
+			\apply_filters( Ajax_Hooks::CALLBACK_REQUEST_FILTER, $this->server_request, $ajax_class ),
+			$this->response_factory
+		);
 	}
 
 	/**
@@ -88,11 +93,25 @@ class Ajax_Controller {
 		 * @return noreturn
 		 */
 		return function() use ( $ajax_class ): void {
-			$response = $this->validate_request( $ajax_class )
+			try {
+				$response = $this->validate_request( $ajax_class )
 				? $this->invoke_callback( $ajax_class )
 				: $this->response_factory->unauthorised();
+			} catch ( Exception $th ) {
 
-			$this->http_helper->emit_psr7_response( $response );
+				do_action( Ajax_Hooks::CALLBACK_EXECUTION_EXCEPTION, $th, $ajax_class );
+
+				$response = $this->response_factory->failure(
+					array(
+						'error' => $th->getMessage(),
+					)
+				);
+			}
+
+			$this->http_helper->emit_psr7_response(
+				\apply_filters( Ajax_Hooks::CALLBACK_RESPONSE_FILTER, $response, $ajax_class )
+			);
+
 			\wp_die();
 		};
 	}

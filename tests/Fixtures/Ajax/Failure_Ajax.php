@@ -13,16 +13,17 @@ declare(strict_types=1);
 
 namespace PinkCrab\Ajax\Tests\Fixtures\Ajax;
 
+use Exception;
 use PinkCrab\Ajax\Ajax;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 
-class Simple_Get_Call extends Ajax {
+class Failure_Ajax extends Ajax {
 
-	public const ACTION       = 'simple_get_call_action';
-	public const NONCE_HANDLE = 'simple_get_call_nonce';
-	public const NONCE_FIELD  = 'simple_get_call_nonce_field';
+	public const ACTION       = 'failure_action';
+	public const NONCE_HANDLE = 'failure_nonce';
+	public const NONCE_FIELD  = 'failure_nonce_field';
 
 	/**
 	 * Define the action to call.
@@ -53,6 +54,6 @@ class Simple_Get_Call extends Ajax {
 		ServerRequestInterface $request,
 		ResponseFactoryInterface $response_factory
 	): ResponseInterface {
-		return $response_factory->success( array( 'success' => __CLASS__ ) );
+		throw new Exception( __CLASS__ );
 	}
 }
