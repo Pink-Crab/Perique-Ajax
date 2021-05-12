@@ -26,6 +26,7 @@ namespace PinkCrab\Ajax;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use PinkCrab\Ajax\Dispatcher\Response_Factory;
 use Psr\Http\Message\ResponseFactoryInterface;
 
 abstract class Ajax {
@@ -71,12 +72,12 @@ abstract class Ajax {
 	 * The callback
 	 *
 	 * @param \Psr\Http\Message\ServerRequestInterface $request
-	 * @param \Psr\Http\Message\ResponseFactoryInterface $response_factory
+	 * @param \PinkCrab\Ajax\Dispatcher\Response_Factory $response_factory
 	 * @return \Psr\Http\Message\ResponseInterface
 	 */
 	abstract public function callback(
 		ServerRequestInterface $request,
-		ResponseFactoryInterface $response_factory
+		Response_Factory $response_factory
 	): ResponseInterface;
 
 

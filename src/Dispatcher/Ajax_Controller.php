@@ -73,6 +73,7 @@ class Ajax_Controller {
 	 *
 	 * @param \PinkCrab\Ajax\Ajax $ajax_class
 	 * @return \Psr\Http\Message\ResponseInterface
+	 * @filter Ajax_Hooks::CALLBACK_REQUEST_FILTER
 	 */
 	public function invoke_callback( Ajax $ajax_class ): ResponseInterface {
 		return $ajax_class->callback(
@@ -86,6 +87,9 @@ class Ajax_Controller {
 	 *
 	 * @param \PinkCrab\Ajax\Ajax $ajax_class
 	 * @return \Closure():noreturn
+	 * @filter Ajax_Hooks::REQUEST_NONCE_VERIFICATION
+	 * @action Ajax_Hooks::CALLBACK_EXECUTION_EXCEPTION
+	 * @filter Ajax_Hooks::CALLBACK_RESPONSE_FILTER
 	 */
 	public function create_callback( Ajax $ajax_class ): Closure {
 		/**
@@ -93,23 +97,28 @@ class Ajax_Controller {
 		 * @return noreturn
 		 */
 		return function() use ( $ajax_class ): void {
+
+			/** @phpstan-ignore-next-line */
+			$valid_nonce = apply_filters(
+				Ajax_Hooks::REQUEST_NONCE_VERIFICATION,
+				$this->validate_request( $ajax_class ),
+				$ajax_class,
+				$this->server_request
+			);
+
 			try {
-				$response = $this->validate_request( $ajax_class )
+				$response = $valid_nonce
 				? $this->invoke_callback( $ajax_class )
 				: $this->response_factory->unauthorised();
 			} catch ( Exception $th ) {
 
 				do_action( Ajax_Hooks::CALLBACK_EXECUTION_EXCEPTION, $th, $ajax_class );
 
-				$response = $this->response_factory->failure(
-					array(
-						'error' => $th->getMessage(),
-					)
-				);
+				$response = $this->response_factory->failure( array( 'error' => $th->getMessage() ) );
 			}
 			$this->http_helper->emit_psr7_response(
 				/** @phpstan-ignore-next-line */
-				\apply_filters( Ajax_Hooks::CALLBACK_RESPONSE_FILTER, $response, $ajax_class )
+				\apply_filters( Ajax_Hooks::CALLBACK_RESPONSE_FILTER, $response, $ajax_class, $this->server_request )
 			);
 
 			\wp_die();

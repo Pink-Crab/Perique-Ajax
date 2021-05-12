@@ -40,4 +40,9 @@ class Ajax_Hooks {
 	 * Filters the ResponseInterfaces's Response before being passed from callback() to emitter.
 	 */
 	public const CALLBACK_RESPONSE_FILTER = 'pinkcrab/ajax/callback_response_filter';
+
+	/**
+	 * Filters the response from the nonce check used within an ajax callback
+	 */
+	public const REQUEST_NONCE_VERIFICATION = 'pinkcrab/ajax/request_nonce_verification';
 }

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Mock Ajax call for a simple GET
+ * Mock Ajax class that returns the request body as its responce
  *
  * @since 0.1.0
  * @author Glynn Quelch <glynn.quelch@gmail.com>
@@ -14,15 +14,14 @@ declare(strict_types=1);
 namespace PinkCrab\Ajax\Tests\Fixtures\Ajax;
 
 use PinkCrab\Ajax\Ajax;
+use PinkCrab\Ajax\Dispatcher\Response_Factory;
+use PinkCrab\Ajax\Ajax_Helper;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseFactoryInterface;
 
-class Logged_In_Out_Ajax extends Ajax {
+class Repeating_Ajax extends Ajax {
 
-	public const ACTION       = 'logged_in_out_action';
-	public const NONCE_HANDLE = 'logged_in_out_nonce';
-	public const NONCE_FIELD  = 'logged_in_out_nonce_field';
+	public const ACTION = 'repeating_ajax_action';
 
 	/**
 	 * Define the action to call.
@@ -31,28 +30,16 @@ class Logged_In_Out_Ajax extends Ajax {
 	protected $action = self::ACTION;
 
 	/**
-	 * The ajax calls nonce handle.
-	 * @var string
-	 */
-	protected $nonce_handle = self::NONCE_HANDLE;
-
-	/**
-	 * The nonce field
-	 * @var string
-	 */
-	protected $nonce_field = self::NONCE_FIELD;
-
-	/**
 	 * The callback
 	 *
 	 * @param \Psr\Http\Message\ServerRequestInterface $request
-	 * @param \Psr\Http\Message\ResponseFactoryInterface $response_factory
+	 * @param \PinkCrab\Ajax\Dispatcher\Response_Factory $response_factory
 	 * @return \Psr\Http\Message\ResponseInterface
 	 */
 	public function callback(
 		ServerRequestInterface $request,
-		ResponseFactoryInterface $response_factory
+		Response_Factory $response_factory
 	): ResponseInterface {
-		return $response_factory->success( array( 'success' => __CLASS__ ) );
+		return $response_factory->success( Ajax_Helper::extract_server_request_args( $request ) );
 	}
 }

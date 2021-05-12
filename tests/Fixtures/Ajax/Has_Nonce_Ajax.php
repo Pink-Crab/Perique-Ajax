@@ -13,17 +13,17 @@ declare(strict_types=1);
 
 namespace PinkCrab\Ajax\Tests\Fixtures\Ajax;
 
-use Exception;
 use PinkCrab\Ajax\Ajax;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use PinkCrab\Ajax\Dispatcher\Response_Factory;
+use Psr\Http\Message\ResponseFactoryInterface;
 
-class Failure_Ajax extends Ajax {
+class Has_Nonce_Ajax extends Ajax {
 
-	public const ACTION       = 'failure_action';
-	public const NONCE_HANDLE = 'failure_nonce';
-	public const NONCE_FIELD  = 'failure_nonce_field';
+	public const ACTION       = 'logged_in_out_action';
+	public const NONCE_HANDLE = 'logged_in_out_nonce';
+	public const NONCE_FIELD  = 'logged_in_out_nonce_field';
 
 	/**
 	 * Define the action to call.
@@ -54,16 +54,6 @@ class Failure_Ajax extends Ajax {
 		ServerRequestInterface $request,
 		Response_Factory $response_factory
 	): ResponseInterface {
-		throw new Exception( "Exception thrown by: ". __CLASS__ );
-	}
-
-	/**
-	 * Override the ajax handle
-	 *
-	 * @param string|null $handle
-	 * @return void
-	 */
-	public function set_ajax_handle( ?string $handle ): void {
-		$this->nonce_handle = $handle;
+		return $response_factory->success( array( 'success' => __CLASS__, 'get' => $request->getQueryParams() ) );
 	}
 }

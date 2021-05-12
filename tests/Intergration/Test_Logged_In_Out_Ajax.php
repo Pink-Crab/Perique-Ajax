@@ -17,7 +17,7 @@ use PinkCrab\Ajax\Ajax_Helper;
 use PinkCrab\HTTP\HTTP_Helper;
 use Psr\Http\Message\ServerRequestInterface;
 use PinkCrab\Ajax\Tests\Fixtures\Ajax_BaseCase;
-use PinkCrab\Ajax\Tests\Fixtures\Ajax\Logged_In_Out_Ajax;
+use PinkCrab\Ajax\Tests\Fixtures\Ajax\Has_Nonce_Ajax;
 
 class Test_Simple_Get extends Ajax_BaseCase {
 
@@ -31,22 +31,22 @@ class Test_Simple_Get extends Ajax_BaseCase {
 		$this->_setRole( 'subscriber' );
 
 		// Mock the request.
-		$_GET[ Ajax_Helper::get_nonce_field( Logged_In_Out_Ajax::class ) ] =
-			Ajax_Helper::get_nonce( Logged_In_Out_Ajax::class )->token();
+		$_GET[ Ajax_Helper::get_nonce_field( Has_Nonce_Ajax::class ) ] =
+			Ajax_Helper::get_nonce( Has_Nonce_Ajax::class )->token();
 
 		$dispatcher = $this->ajax_dispatcher_provider();
-		$dispatcher->add_ajax_call( new Logged_In_Out_Ajax );
+		$dispatcher->add_ajax_call( new Has_Nonce_Ajax );
 		$dispatcher->execute();
 
 		try {
-			$this->_handleAjax( Logged_In_Out_Ajax::ACTION );
+			$this->_handleAjax( Has_Nonce_Ajax::ACTION );
 		} catch ( \WPAjaxDieContinueException $e ) {
 		}
 
 		$response = json_decode( $this->_last_response );
 
 		$this->assertTrue( \property_exists( $response, 'success' ) );
-		$this->assertEquals( Logged_In_Out_Ajax::class, $response->success );
+		$this->assertEquals( Has_Nonce_Ajax::class, $response->success );
 		$this->assertEquals(200,http_response_code() );
 	}
 
@@ -65,25 +65,25 @@ class Test_Simple_Get extends Ajax_BaseCase {
 			function( ServerRequestInterface $request ): ServerRequestInterface {
 				return $request->withParsedBody(
 					array(
-						Ajax_Helper::get_nonce_field( Logged_In_Out_Ajax::class )
-							=> Ajax_Helper::get_nonce( Logged_In_Out_Ajax::class )->token(),
+						Ajax_Helper::get_nonce_field( Has_Nonce_Ajax::class )
+							=> Ajax_Helper::get_nonce( Has_Nonce_Ajax::class )->token(),
 					)
 				)
 				->withHeader( 'Content-Type', 'application/x-www-form-urlencoded;' );
 			}
 		);
-		$dispatcher->add_ajax_call( new Logged_In_Out_Ajax );
+		$dispatcher->add_ajax_call( new Has_Nonce_Ajax );
 		$dispatcher->execute();
 
 		try {
-			$this->_handleAjax( Logged_In_Out_Ajax::ACTION );
+			$this->_handleAjax( Has_Nonce_Ajax::ACTION );
 		} catch ( \WPAjaxDieContinueException $e ) {
 		}
 
 		$response = json_decode( $this->_last_response );
 
 		$this->assertTrue( \property_exists( $response, 'success' ) );
-		$this->assertEquals( Logged_In_Out_Ajax::class, $response->success );
+		$this->assertEquals( Has_Nonce_Ajax::class, $response->success );
 		$this->assertEquals(200,http_response_code() );
 	}
 
@@ -103,25 +103,25 @@ class Test_Simple_Get extends Ajax_BaseCase {
 				return $request->withBody(
 					HTTP_Helper::stream_from_scalar(
 						array(
-							Ajax_Helper::get_nonce_field( Logged_In_Out_Ajax::class )
-								=> Ajax_Helper::get_nonce( Logged_In_Out_Ajax::class )->token(),
+							Ajax_Helper::get_nonce_field( Has_Nonce_Ajax::class )
+								=> Ajax_Helper::get_nonce( Has_Nonce_Ajax::class )->token(),
 						)
 					)
 				);
 			}
 		);
-		$dispatcher->add_ajax_call( new Logged_In_Out_Ajax );
+		$dispatcher->add_ajax_call( new Has_Nonce_Ajax );
 		$dispatcher->execute();
 
 		try {
-			$this->_handleAjax( Logged_In_Out_Ajax::ACTION );
+			$this->_handleAjax( Has_Nonce_Ajax::ACTION );
 		} catch ( \WPAjaxDieContinueException $e ) {
 		}
 
 		$response = json_decode( $this->_last_response );
 
 		$this->assertTrue( \property_exists( $response, 'success' ) );
-		$this->assertEquals( Logged_In_Out_Ajax::class, $response->success );
+		$this->assertEquals( Has_Nonce_Ajax::class, $response->success );
 		$this->assertEquals(200,http_response_code() );
 	}
 
@@ -139,14 +139,14 @@ class Test_Simple_Get extends Ajax_BaseCase {
 		$this->_setRole( 'subscriber' );
 
 		// Mock the request.
-		$_GET[ Ajax_Helper::get_nonce_field( Logged_In_Out_Ajax::class ) ] = 'fail';
+		$_GET[ Ajax_Helper::get_nonce_field( Has_Nonce_Ajax::class ) ] = 'fail';
 
 		$dispatcher = $this->ajax_dispatcher_provider();
-		$dispatcher->add_ajax_call( new Logged_In_Out_Ajax );
+		$dispatcher->add_ajax_call( new Has_Nonce_Ajax );
 		$dispatcher->execute();
 
 		try {
-			$this->_handleAjax( Logged_In_Out_Ajax::ACTION );
+			$this->_handleAjax( Has_Nonce_Ajax::ACTION );
 		} catch ( \WPAjaxDieContinueException $e ) {
 		}
 
@@ -172,17 +172,17 @@ class Test_Simple_Get extends Ajax_BaseCase {
 			function( ServerRequestInterface $request ): ServerRequestInterface {
 				return $request->withParsedBody(
 					array(
-						Ajax_Helper::get_nonce_field( Logged_In_Out_Ajax::class )                           => 'fail',
+						Ajax_Helper::get_nonce_field( Has_Nonce_Ajax::class )                           => 'fail',
 					)
 				)
 				->withHeader( 'Content-Type', 'application/x-www-form-urlencoded;' );
 			}
 		);
-		$dispatcher->add_ajax_call( new Logged_In_Out_Ajax );
+		$dispatcher->add_ajax_call( new Has_Nonce_Ajax );
 		$dispatcher->execute();
 
 		try {
-			$this->_handleAjax( Logged_In_Out_Ajax::ACTION );
+			$this->_handleAjax( Has_Nonce_Ajax::ACTION );
 		} catch ( \WPAjaxDieContinueException $e ) {
 		}
 
@@ -209,17 +209,17 @@ class Test_Simple_Get extends Ajax_BaseCase {
 				return $request->withBody(
 					HTTP_Helper::stream_from_scalar(
 						array(
-							Ajax_Helper::get_nonce_field( Logged_In_Out_Ajax::class )                               => 'fail',
+							Ajax_Helper::get_nonce_field( Has_Nonce_Ajax::class )                               => 'fail',
 						)
 					)
 				);
 			}
 		);
-		$dispatcher->add_ajax_call( new Logged_In_Out_Ajax );
+		$dispatcher->add_ajax_call( new Has_Nonce_Ajax );
 		$dispatcher->execute();
 
 		try {
-			$this->_handleAjax( Logged_In_Out_Ajax::ACTION );
+			$this->_handleAjax( Has_Nonce_Ajax::ACTION );
 		} catch ( \WPAjaxDieContinueException $e ) {
 		}
 

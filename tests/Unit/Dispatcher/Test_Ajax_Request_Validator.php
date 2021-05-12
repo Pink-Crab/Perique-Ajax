@@ -20,7 +20,7 @@ use Gin0115\WPUnit_Helpers\Objects;
 use Psr\Http\Message\ServerRequestInterface;
 use PinkCrab\Ajax\Tests\Fixtures\Ajax\Invalid_Ajax;
 use PinkCrab\Ajax\Dispatcher\Ajax_Request_Validator;
-use PinkCrab\Ajax\Tests\Fixtures\Ajax\Logged_In_Out_Ajax;
+use PinkCrab\Ajax\Tests\Fixtures\Ajax\Has_Nonce_Ajax;
 
 class Test_Ajax_Request_Validator extends WP_UnitTestCase {
 
@@ -43,13 +43,13 @@ class Test_Ajax_Request_Validator extends WP_UnitTestCase {
 	/** @testdox When validating an ajax call which has a defined nonce, but no nonce defined in ServerRequest should fail validation. */
 	public function test_validation_fail_if_no_nonce_in_request(): void {
 		$validator = new Ajax_Request_Validator( $this->createMock( ServerRequestInterface::class ) );
-		$ajax      = new Logged_In_Out_Ajax();
+		$ajax      = new Has_Nonce_Ajax();
 		$this->assertFalse( $validator->validate( $ajax ) );
 	}
 
 	/** @testdox When validating an ajax call which has a defined nonce, invalid nonce defined in ServerRequest should fail validation. */
 	public function test_validation_fail_if_invalid_nonce_in_request(): void {
-		$ajax = new Logged_In_Out_Ajax();
+		$ajax = new Has_Nonce_Ajax();
 
 		$validator = new Ajax_Request_Validator(
 			HTTP_Helper::global_server_request()->withQueryParams(
@@ -64,7 +64,7 @@ class Test_Ajax_Request_Validator extends WP_UnitTestCase {
 
 	/** @testdox When validating an ajax request with the nonce set in the request, it should pass if the tokens match. */
 	public function test_validation_success_with_valid_nonce_in_request(): void {
-		$ajax = new Logged_In_Out_Ajax();
+		$ajax = new Has_Nonce_Ajax();
 
 		$validator = new Ajax_Request_Validator(
 			HTTP_Helper::global_server_request()->withQueryParams(

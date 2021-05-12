@@ -50,13 +50,4 @@ class Ajax_Exception extends Exception {
 		return new Ajax_Exception( $message, 2 );
 	}
 
-	/**
-	 * Exception caught during callback execution
-	 * @code 3
-	 * @param Exception $excetion Caught exception.
-	 * @return Ajax_Exception
-	 */
-	public static function callback_execution_error( Exception $excetion ): Ajax_Exception {
-		return new Ajax_Exception( $excetion->getMessage(), 3 );
-	}
 }
