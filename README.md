@@ -7,7 +7,7 @@ A simple but powerful Ajax library for the PinkCrab Perique framework. Allows fo
 ![](https://github.com/Pink-Crab/Ajax/workflows/GitHub_CI/badge.svg " ")
 [![codecov](https://codecov.io/gh/Pink-Crab/Ajax/branch/master/graph/badge.svg?token=NEZOz6FsKK)](https://codecov.io/gh/Pink-Crab/Ajax)
 
-## Version 0.1.0 ##
+## Version 0.1.0-beta ##
 
 ****
 
