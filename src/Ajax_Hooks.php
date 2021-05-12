@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Custom exceptions for the Ajax module.
+ * Action & Filter handles
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -24,30 +24,25 @@ declare(strict_types=1);
 
 namespace PinkCrab\Ajax;
 
-use Exception;
-
-class Ajax_Exception extends Exception {
+class Ajax_Hooks {
 
 	/**
-	 * Class is not an Ajax::class
-	 * @code 1
-	 * @param string $operation The operation being carries out.
-	 * @return Ajax_Exception
+	 * Action called when callback throws an exception.
 	 */
-	public static function none_ajax_model( string $operation = 'unknown operation' ): Ajax_Exception {
-		$message = 'None Ajax Model passed to ' . $operation;
-		return new Ajax_Exception( $message, 1 );
-	}
+	public const CALLBACK_EXECUTION_EXCEPTION = 'pinkcrab/ajax/callback_execution_exception';
 
 	/**
-	 * Ajax::class has no defined action.
-	 * @code 2
-	 * @param string $class Ajax class
-	 * @return Ajax_Exception
+	 * Filters the ServerRequestInterface's Request before being passed to callback()
 	 */
-	public static function undefined_action( string $class ): Ajax_Exception {
-		$message = "{$class} has no defined action property";
-		return new Ajax_Exception( $message, 2 );
-	}
+	public const CALLBACK_REQUEST_FILTER = 'pinkcrab/ajax/callback_request_filter';
 
+	/**
+	 * Filters the ResponseInterfaces's Response before being passed from callback() to emitter.
+	 */
+	public const CALLBACK_RESPONSE_FILTER = 'pinkcrab/ajax/callback_response_filter';
+
+	/**
+	 * Filters the response from the nonce check used within an ajax callback
+	 */
+	public const REQUEST_NONCE_VERIFICATION = 'pinkcrab/ajax/request_nonce_verification';
 }

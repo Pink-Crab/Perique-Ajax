@@ -17,7 +17,7 @@ use WP_UnitTestCase;
 use PinkCrab\Ajax\Ajax;
 use Gin0115\WPUnit_Helpers\Objects;
 use PinkCrab\Ajax\Tests\Fixtures\Ajax\Invalid_Ajax;
-use PinkCrab\Ajax\Tests\Fixtures\Ajax\Simple_Get_Call;
+use PinkCrab\Ajax\Tests\Fixtures\Ajax\Has_Nonce_Ajax;
 use PinkCrab\Registerables\Tests\Fixtures\CPT\Invlaid_CPT;
 
 class Test_Ajax extends WP_UnitTestCase {
@@ -25,8 +25,8 @@ class Test_Ajax extends WP_UnitTestCase {
 	/** @testdox It should be possible to get the wp_ajax action from an Ajax model. */
 	public function test_can_get_action(): void {
 		$this->assertEquals(
-			Simple_Get_Call::ACTION,
-			( new Simple_Get_Call )->get_action()
+			Has_Nonce_Ajax::ACTION,
+			( new Has_Nonce_Ajax )->get_action()
 		);
 	}
 
@@ -40,8 +40,8 @@ class Test_Ajax extends WP_UnitTestCase {
 	/** @testdox It should be possible to get the wp_ajax nonce_handle from an Ajax model. */
 	public function test_can_get_nonce_handle(): void {
 		$this->assertEquals(
-			Simple_Get_Call::NONCE_HANDLE,
-			( new Simple_Get_Call )->get_nonce_handle()
+			Has_Nonce_Ajax::NONCE_HANDLE,
+			( new Has_Nonce_Ajax )->get_nonce_handle()
 		);
 	}
 
@@ -55,8 +55,8 @@ class Test_Ajax extends WP_UnitTestCase {
 	/** @testdox It should be possible to get the none field key from an Ajax model */
 	public function test_can_get_nonce_field_key(): void {
 		$this->assertEquals(
-			Simple_Get_Call::NONCE_HANDLE,
-			( new Simple_Get_Call )->get_nonce_handle()
+			Has_Nonce_Ajax::NONCE_HANDLE,
+			( new Has_Nonce_Ajax )->get_nonce_handle()
 		);
 
 		// Fallback if not defined.
@@ -76,7 +76,7 @@ class Test_Ajax extends WP_UnitTestCase {
 		$this->assertFalse( $all_false->get_logged_in() );
 		$this->assertFalse( $all_false->get_logged_out() );
 
-		$all_true = new Simple_Get_Call;
+		$all_true = new Has_Nonce_Ajax;
 
 		$this->assertTrue( $all_true->get_logged_in() );
 		$this->assertTrue( $all_true->get_logged_out() );

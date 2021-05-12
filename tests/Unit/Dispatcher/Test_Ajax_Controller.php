@@ -22,7 +22,7 @@ use PinkCrab\Ajax\Dispatcher\Ajax_Controller;
 use PinkCrab\Ajax\Dispatcher\Response_Factory;
 use PinkCrab\Ajax\Tests\Fixtures\Ajax\Invalid_Ajax;
 use PinkCrab\Ajax\Dispatcher\Ajax_Request_Validator;
-use PinkCrab\Ajax\Tests\Fixtures\Ajax\Simple_Get_Call;
+use PinkCrab\Ajax\Tests\Fixtures\Ajax\Has_Nonce_Ajax;
 
 class Test_Ajax_Controller extends WP_UnitTestCase {
 
@@ -52,7 +52,7 @@ class Test_Ajax_Controller extends WP_UnitTestCase {
 		);
 
 		$this->assertTrue( $controller->validate_request( new Invalid_Ajax() ) );
-		$this->assertFalse( $controller->validate_request( new Simple_Get_Call() ) );
+		$this->assertFalse( $controller->validate_request( new Has_Nonce_Ajax() ) );
 	}
 
 	/** @testdox The controller should be able to invoke the callback of an ajax call and be returns a populated with valid headers, body/params */
@@ -66,11 +66,11 @@ class Test_Ajax_Controller extends WP_UnitTestCase {
 			new Ajax_Request_Validator( $server_request )
 		);
 
-		$response      = $controller->invoke_callback( new Simple_Get_Call() );
+		$response      = $controller->invoke_callback( new Has_Nonce_Ajax() );
 		$response_body = \json_decode( (string) $response->getBody() );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertEquals( Simple_Get_Call::class, $response_body->success );
+		$this->assertEquals( Has_Nonce_Ajax::class, $response_body->success );
 	}
 
 	/** @testdox The callback used for the ajax call should be contructed bound to the controller with access to the ajax class. */
@@ -82,11 +82,11 @@ class Test_Ajax_Controller extends WP_UnitTestCase {
 			$this->createMock( Ajax_Request_Validator::class )
 		);
 
-		$callback  = $controller->create_callback( new Simple_Get_Call );
+		$callback  = $controller->create_callback( new Has_Nonce_Ajax );
 		$reflected = new ReflectionFunction( $callback );
 
 		$this->assertSame( $controller, $reflected->getClosureThis() );
 		$this->assertArrayHasKey( 'ajax_class', $reflected->getStaticVariables() );
-		$this->assertInstanceOf( Simple_Get_Call::class, $reflected->getStaticVariables()['ajax_class'] );
+		$this->assertInstanceOf( Has_Nonce_Ajax::class, $reflected->getStaticVariables()['ajax_class'] );
 	}
 }

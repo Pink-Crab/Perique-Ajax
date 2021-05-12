@@ -16,7 +16,7 @@ namespace PinkCrab\Ajax\Tests\Fixtures\Ajax;
 use PinkCrab\Ajax\Ajax;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseFactoryInterface;
+use PinkCrab\Ajax\Dispatcher\Response_Factory;
 
 class Invalid_Ajax extends Ajax {
 
@@ -24,11 +24,11 @@ class Invalid_Ajax extends Ajax {
 	 * The callback
 	 *
 	 * @param  \Psr\Http\Message\ServerRequestInterface $request
-	 * @param  \Psr\Http\Message\ResponseFactoryInterface $response_factory
+	 * @param  \PinkCrab\Ajax\Dispatcher\Response_Factory $response_factory
 	 * @return \Psr\Http\Message\ResponseInterface
 	 */
 	public function callback(
 		ServerRequestInterface $request,
-		ResponseFactoryInterface $response_factory
+		Response_Factory $response_factory
 	): ResponseInterface {}
 }

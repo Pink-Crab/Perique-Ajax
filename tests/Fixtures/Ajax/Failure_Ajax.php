@@ -13,16 +13,17 @@ declare(strict_types=1);
 
 namespace PinkCrab\Ajax\Tests\Fixtures\Ajax;
 
+use Exception;
 use PinkCrab\Ajax\Ajax;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseFactoryInterface;
+use PinkCrab\Ajax\Dispatcher\Response_Factory;
 
-class Simple_Get_Call extends Ajax {
+class Failure_Ajax extends Ajax {
 
-	public const ACTION       = 'simple_get_call_action';
-	public const NONCE_HANDLE = 'simple_get_call_nonce';
-	public const NONCE_FIELD  = 'simple_get_call_nonce_field';
+	public const ACTION       = 'failure_action';
+	public const NONCE_HANDLE = 'failure_nonce';
+	public const NONCE_FIELD  = 'failure_nonce_field';
 
 	/**
 	 * Define the action to call.
@@ -46,13 +47,23 @@ class Simple_Get_Call extends Ajax {
 	 * The callback
 	 *
 	 * @param \Psr\Http\Message\ServerRequestInterface $request
-	 * @param \Psr\Http\Message\ResponseFactoryInterface $response_factory
+	 * @param \PinkCrab\Ajax\Dispatcher\Response_Factory $response_factory
 	 * @return \Psr\Http\Message\ResponseInterface
 	 */
 	public function callback(
 		ServerRequestInterface $request,
-		ResponseFactoryInterface $response_factory
+		Response_Factory $response_factory
 	): ResponseInterface {
-		return $response_factory->success( array( 'success' => __CLASS__ ) );
+		throw new Exception( "Exception thrown by: ". __CLASS__ );
+	}
+
+	/**
+	 * Override the ajax handle
+	 *
+	 * @param string|null $handle
+	 * @return void
+	 */
+	public function set_ajax_handle( ?string $handle ): void {
+		$this->nonce_handle = $handle;
 	}
 }

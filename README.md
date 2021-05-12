@@ -123,9 +123,9 @@ If true will set the non_piv_ ajax hook. Allowing logged out user to use this ca
 
 ### Methods ###
 
-**public function callback( ServerRequestInterface $request, ResponseFactoryInterface $response_factory )**
+**public function callback( ServerRequestInterface $request, Response_Factory $response_factory )**
 > @param \Psr\Http\Message\ServerRequestInterface $request  
-> @param \Psr\Http\Message\ResponseFactoryInterface $response_factory  
+> @param \PinkCrab\Ajax\Dispatcher\Response_Factory $response_factory  
 > @return \Psr\Http\Message\ResponseInterface  
 
 The callback method, called if the request has been validated. Passed in the current request and has access to all depenencies injected into model. Callback must return a valid HTTP Response (See Response_Factory for more details)
@@ -148,7 +148,7 @@ class My_Ajax extends \PinkCrab\Ajax\Ajax{
     }
 
     // Return back a 200 response with some payload in the body.
-    public function callback( ServerRequestInterface $request, ResponseFactoryInterface $response_factory ): ResponseInterface{
+    public function callback( ServerRequestInterface $request, Response_Factory $response_factory ): ResponseInterface{
         return $response_factory->success([
             'some_data' => $this->some_service->some_method()
         ]);

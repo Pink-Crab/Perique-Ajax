@@ -25,8 +25,10 @@ declare(strict_types=1);
 namespace PinkCrab\Ajax\Dispatcher;
 
 use Closure;
+use Exception;
 use PinkCrab\Ajax\Ajax;
 use PinkCrab\HTTP\HTTP;
+use PinkCrab\Ajax\Ajax_Hooks;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -71,9 +73,13 @@ class Ajax_Controller {
 	 *
 	 * @param \PinkCrab\Ajax\Ajax $ajax_class
 	 * @return \Psr\Http\Message\ResponseInterface
+	 * @filter Ajax_Hooks::CALLBACK_REQUEST_FILTER
 	 */
 	public function invoke_callback( Ajax $ajax_class ): ResponseInterface {
-		return $ajax_class->callback( $this->server_request, $this->response_factory );
+		return $ajax_class->callback(
+			\apply_filters( Ajax_Hooks::CALLBACK_REQUEST_FILTER, $this->server_request, $ajax_class ), /* @phpstan-ignore-line */
+			$this->response_factory
+		);
 	}
 
 	/**
@@ -81,6 +87,9 @@ class Ajax_Controller {
 	 *
 	 * @param \PinkCrab\Ajax\Ajax $ajax_class
 	 * @return \Closure():noreturn
+	 * @filter Ajax_Hooks::REQUEST_NONCE_VERIFICATION
+	 * @action Ajax_Hooks::CALLBACK_EXECUTION_EXCEPTION
+	 * @filter Ajax_Hooks::CALLBACK_RESPONSE_FILTER
 	 */
 	public function create_callback( Ajax $ajax_class ): Closure {
 		/**
@@ -88,11 +97,30 @@ class Ajax_Controller {
 		 * @return noreturn
 		 */
 		return function() use ( $ajax_class ): void {
-			$response = $this->validate_request( $ajax_class )
+
+			/** @phpstan-ignore-next-line */
+			$valid_nonce = apply_filters(
+				Ajax_Hooks::REQUEST_NONCE_VERIFICATION,
+				$this->validate_request( $ajax_class ),
+				$ajax_class,
+				$this->server_request
+			);
+
+			try {
+				$response = $valid_nonce
 				? $this->invoke_callback( $ajax_class )
 				: $this->response_factory->unauthorised();
+			} catch ( Exception $th ) {
 
-			$this->http_helper->emit_psr7_response( $response );
+				do_action( Ajax_Hooks::CALLBACK_EXECUTION_EXCEPTION, $th, $ajax_class );
+
+				$response = $this->response_factory->failure( array( 'error' => $th->getMessage() ) );
+			}
+			$this->http_helper->emit_psr7_response(
+				/** @phpstan-ignore-next-line */
+				\apply_filters( Ajax_Hooks::CALLBACK_RESPONSE_FILTER, $response, $ajax_class, $this->server_request )
+			);
+
 			\wp_die();
 		};
 	}
