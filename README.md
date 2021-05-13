@@ -390,8 +390,6 @@ add_action(
 );
 ```
 
-### Methods ###
-
 ## License ##
 
 ### MIT License ###
