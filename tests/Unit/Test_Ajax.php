@@ -52,7 +52,7 @@ class Test_Ajax extends WP_UnitTestCase {
 		);
 	}
 
-	/** @testdox It should be possible to get the none field key from an Ajax model */
+	/** @testdox It should be possible to get the non field key from an Ajax model */
 	public function test_can_get_nonce_field_key(): void {
 		$this->assertEquals(
 			Has_Nonce_Ajax::NONCE_HANDLE,
@@ -67,7 +67,7 @@ class Test_Ajax extends WP_UnitTestCase {
 	}
 
 	/** @testdox It should be possible to get the logged in/out or prive/non_priv definitions from an ajax model. */
-	public function test_can_get_priv_and_none_priv_settings(): void {
+	public function test_can_get_priv_and_non_priv_settings(): void {
 
 		$all_false = $this->createMock( Ajax::class );
 		Objects::set_property( $all_false, 'logged_in', false );
