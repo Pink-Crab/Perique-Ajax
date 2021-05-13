@@ -207,8 +207,8 @@ Returns the sites current admin-ajax url. Just a wrapper for `admin_url('admin-a
 **public static function get_action( string $class )**
 > @param string $class  
 > @return string  
-> @throws Ajax_Exception (code 1) If none valid Ajax class passed.
-> @throws Ajax_Exception (code 2) If no action defined
+> @throws Ajax_Exception (code 100) If non valid Ajax class passed.
+> @throws Ajax_Exception (code 101) If no action defined
 
 Gets the defined action from a passed Ajax Model. Will throw an exception if the class is not extending the Abstract Ajax Model or has no Action defined.
 
@@ -217,7 +217,7 @@ Gets the defined action from a passed Ajax Model. Will throw an exception if the
 **public static function has_nonce( string $class )**
 > @param string $class  
 > @return boolean  
-> @throws Ajax_Exception (code 1) If none valid Ajax class passed.
+> @throws Ajax_Exception (code 100) If non valid Ajax class passed.
 
 Checks if passed Ajax Model uses a nonce (has nonce_handle defined). Will throw an exception if the class is not extending the Abstract Ajax Model.
 
@@ -226,7 +226,7 @@ Checks if passed Ajax Model uses a nonce (has nonce_handle defined). Will throw 
 **public static function get_nonce( string $class )**
 > @param string $class   
 > @return Nonce|null  
-> @throws Ajax_Exception (code 1) If none valid Ajax class passed.
+> @throws Ajax_Exception (code 100) If non valid Ajax class passed.
 
 Returns a populated [Nonce object](https://github.com/Pink-Crab/Nonce) if the class has a nonce_handle defined. Returns null if class doesnt have a nonce_handle defined. Will throw an exception if the class is not extending the Abstract Ajax Model.
 
@@ -235,7 +235,7 @@ Returns a populated [Nonce object](https://github.com/Pink-Crab/Nonce) if the cl
 **public static function get_nonce_field( string $class )**
 > @param string $class  
 > @return string  
-> @throws Ajax_Exception (code 1) If none valid Ajax class passed.
+> @throws Ajax_Exception (code 100) If non valid Ajax class passed.
 
 Returns the property expected to find the Nonce token held in the ServerRequest. If not set in the Ajax Model will use the default of 'nonce'. Will throw an exception if the class is not extending the Abstract Ajax Model.
 

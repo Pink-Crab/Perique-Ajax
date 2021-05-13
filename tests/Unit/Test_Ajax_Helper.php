@@ -50,17 +50,17 @@ class Test_Ajax_Helper extends WP_UnitTestCase {
 		);
 	}
 
-	/** @testdox Attempting to get the action of a none Ajax class should result in an exception being thrown */
-	public function test_throws_exception_getting_handle_of_none_ajax_class(): void {
+	/** @testdox Attempting to get the action of a non Ajax class should result in an exception being thrown */
+	public function test_throws_exception_getting_handle_of_non_ajax_class(): void {
 		$this->expectException( Ajax_Exception::class );
-		$this->expectExceptionCode( 1 );
+		$this->expectExceptionCode( 100 );
 		Ajax_Helper::get_action( stdClass::class );
 	}
 
 	/** @testdox Attempting to get the action of an invalid Ajax class should result in an exception being thrown */
 	public function test_throws_exception_getting_handle_of_invalid_ajax_class(): void {
 		$this->expectException( Ajax_Exception::class );
-		$this->expectExceptionCode( 2 );
+		$this->expectExceptionCode( 101 );
 		Ajax_Helper::get_action( Invalid_Ajax::class );
 	}
 
@@ -154,7 +154,7 @@ class Test_Ajax_Helper extends WP_UnitTestCase {
 	}
 
 	/** @testdox Any method which is not GET or POST should return a blank array when extracting from Server Request */
-	public function test_extract_empty_array_for_none_get_post_server_request(): void {
+	public function test_extract_empty_array_for_non_get_post_server_request(): void {
 		$request = HTTP_Helper::global_server_request()->withParsedBody(
 			array(
 				'key1' => 'urlEncode1',

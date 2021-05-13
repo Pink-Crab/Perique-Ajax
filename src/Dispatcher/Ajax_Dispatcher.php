@@ -47,7 +47,7 @@ class Ajax_Dispatcher {
 	 *
 	 * @param \PinkCrab\Ajax\Ajax $ajax
 	 * @return void
-	 * @throws Ajax_Exception (code 2) If no action defined
+	 * @throws Ajax_Exception (code 101) If no action defined
 	 */
 	public function add_ajax_call( Ajax $ajax ): void {
 
