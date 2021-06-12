@@ -27,10 +27,10 @@ use PinkCrab\Ajax\Registration_Middleware\Ajax_Middleware;
 class Test_App_Instance extends Ajax_BaseCase {
 
 	/** @testdox It should be possible to add the Ajax Dispatcher in as Registration Middleware as part of the Prique Framework. You then should be able to just add Ajax Models to the Registration list used for the internal Registeration system.  */
-    public function test_app_instance(): void {
-		
-        // Construct the app
-        $app = ( new App_Factory )->with_wp_dice( true )
+	public function test_app_instance(): void {
+
+		// Construct the app
+		$app = ( new App_Factory )->with_wp_dice( true )
 			->app_config( array() )
 			->di_rules(
 				array(
@@ -41,7 +41,7 @@ class Test_App_Instance extends Ajax_BaseCase {
 					),
 				)
 			)
-			->registration_classses(
+			->registration_classes(
 				array(
 					Has_Nonce_Ajax::class,
 					Repeating_Ajax::class,
@@ -50,19 +50,19 @@ class Test_App_Instance extends Ajax_BaseCase {
 			->boot();
 
 		// Add the custom middleware
-        $middleware = $app::make( Ajax_Middleware::class );
+		$middleware = $app::make( Ajax_Middleware::class );
 		$app->registration_middleware( $middleware );
-		
-        // Trigger app intialisation
-        do_action( 'init' );
+
+		// Trigger app intialisation
+		do_action( 'init' );
 
 		// Extract the hooks from the dispatcher, from middleware
-        $dispatcher = Objects::get_property( $middleware, 'dispatcher' );
+		$dispatcher  = Objects::get_property( $middleware, 'dispatcher' );
 		$hook_loader = Objects::get_property( $dispatcher, 'loader' );
 		$hooks       = Objects::get_property( $hook_loader, 'hooks' );
 		$hooks       = $hooks->export();
 
-        // Check ajax calls are registered.
+		// Check ajax calls are registered.
 		$this->assertTrue( $hooks[0]->is_registered() );
 		$this->assertTrue( \has_action( 'wp_ajax_' . $hooks[0]->get_handle() ) );
 		$this->assertTrue( $hooks[1]->is_registered() );
