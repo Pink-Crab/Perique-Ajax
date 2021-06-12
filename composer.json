@@ -1,7 +1,7 @@
 {
     "name": "pinkcrab/ajax",
     "type": "library",
-    "description": "Abstract classes for creating post types, taxonomies, metaboxes and ajax calls.",
+    "description": "Ajax creation library for the Perique Framework.",
     "keywords": [],
     "homepage": "https://pinkcrab.co.uk",
     "license": "MIT",
@@ -38,10 +38,10 @@
     },
     "require": {
         "php": ">=7.1.0",
-        "pinkcrab/perique-framework-core": "0.5.*",
+        "pinkcrab/perique-framework-core": "^1.0",
         "pinkcrab/http": "0.2.*",
         "pinkcrab/enqueue": "1.*",
-        "pinkcrab/wp-nonce": "dev-master"
+        "pinkcrab/wp-nonce": "*"
     },
     "scripts": {
         "test": "phpunit --coverage-clover clover.xml --testdox",
