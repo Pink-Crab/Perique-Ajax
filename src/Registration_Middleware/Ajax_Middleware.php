@@ -34,7 +34,10 @@ class Ajax_Middleware implements Registration_Middleware {
 	 * @return object
 	 */
 	public function process( $class ) {
-		if ( is_a( $class, Ajax::class ) ) {
+		if ( is_a( $class, Ajax::class )
+		&& is_admin()
+		&& ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX )
+		) {
 			$this->dispatcher->add_ajax_call( $class );
 		}
 		return $class;
@@ -45,7 +48,7 @@ class Ajax_Middleware implements Registration_Middleware {
 	}
 
 	/**
-	 * Re
+	 * Register all ajax calls.
 	 *
 	 * @return void
 	 */
