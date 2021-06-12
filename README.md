@@ -22,7 +22,7 @@ Writing Ajax scripts for WordPress can get messy really quickly, with the need t
 
 **Install the Module using composer**
 ```bash 
-$ composer require pinkcrab/perique-ajax
+$ composer require pinkcrab/ajax
 ```
 **Include the custom Ajax Middleware**
 ```php
