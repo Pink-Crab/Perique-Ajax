@@ -33,7 +33,7 @@
         "dealerdirect/phpcodesniffer-composer-installer": "*",
         "wp-coding-standards/wpcs": "*",
         "object-calisthenics/phpcs-calisthenics-rules": "*",
-        "yoast/phpunit-polyfills": "^0.2.0",
+        "yoast/phpunit-polyfills": "^0.2.0 || ^1.0.0",
         "gin0115/wpunit-helpers": "~1.0.0"
     },
     "require": {
