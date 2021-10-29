@@ -39,6 +39,7 @@ $app = ( new App_Factory )
 // Include the custom middleware.
 $app->construct_registration_middleware( Ajax_Middleware::class );
 ```
+## Usage ##
 
 **Create your Ajax Models**
 ```php
@@ -133,6 +134,7 @@ return [
 http://www.opensource.org/licenses/mit-license.html  
 
 ## Change Log ##
+* 1.0.2 - Added in Ajax_Bootstrap class with ::use() method, for simpler inclusion with Perique. Docs improved as part of Perique.info site
 * 1.0.1 - Update yoast/phpunit-polyfills requirement from ^0.2.0 to ^0.2.0 || ^1.0.0 by @dependabot in #13
 * 1.0.0 - Supports Perique 1.0.0 and includes checks to ensure only added when wp_ajax called
 * 0.1.0 Extracted from the Registerables module. Now makes use of a custom Registration_Middleware service for dispatching all Ajax calls.
