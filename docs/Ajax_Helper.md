@@ -33,7 +33,7 @@ Checks if passed Ajax Model uses a nonce (has nonce_handle defined). Will throw 
 
 **public static function get_nonce( string $class )**
 > @param string $class   
-> @return Nonce|null  
+> @return Nonce⎮null  
 > @throws Ajax_Exception (code 100) If non valid Ajax class passed.
 
 Returns a populated [Nonce object](https://github.com/Pink-Crab/Nonce) if the class has a nonce_handle defined. Returns null if class doesnt have a nonce_handle defined. Will throw an exception if the class is not extending the Abstract Ajax Model.

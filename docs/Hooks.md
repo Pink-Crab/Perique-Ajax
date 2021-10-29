@@ -1,5 +1,3 @@
-
-
 ## Hooks ##
 
 There are a few actions and filters which are used by the callback, these allow the extension of all Validation checks, manipulating the request/response objects and also for catching Exceptions thrown in callbacks.
@@ -87,7 +85,7 @@ add_action(
     Ajax_Hooks::CALLBACK_EXECUTION_EXCEPTION, 
     function(Ajax_Exception $exception, Ajax $ajax ): ResponseInterface {
         $this->logger->error(sprintf(
-            "Error thrown when calling %s, returned error messge %s"), 
+            "Error thrown when calling %s, returned error message %s"), 
             get_class($ajax), 
             $exception->getMessage()
         ));

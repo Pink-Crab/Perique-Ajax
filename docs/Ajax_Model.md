@@ -21,8 +21,8 @@ The action used when registering the ajax call and should be passed as part of t
 
 ****
 
-**protected string|null $nonce_handle;**
-> @type string|null 
+**protected string⎮null $nonce_handle;**
+> @type string⎮null 
 
 The handle used for the nonce which is created, if not set will not do a nonce check with the ajax call. This is useful if you want to use an alteranive request verification.
 
@@ -61,3 +61,45 @@ If true will set the non_piv_ ajax hook. Allowing logged out user to use this ca
 
 The callback method, called if the request has been validated. Passed in the current request and has access to all depenencies injected into model. Callback must return a valid HTTP Response (See Response_Factory for more details)
 
+```php
+class Some_Ajax extends Ajax {
+    
+    /**
+     * @var string
+     **/
+    protected string $action = 'some_ajax_action';
+
+    /**
+     * @var string
+     */
+    protected string $nonce_handle = 'some_ajax_nonce';
+
+    /**
+     * @var string
+     */
+    protected string $nonce_field = 'some_ajax_nonce';
+
+    /**
+     * @var bool
+     */
+    protected bool $logged_in;
+
+    /**
+     * @var bool
+     */
+    protected bool $logged_out;
+
+    /**
+	 * @param \Psr\Http\Message\ServerRequestInterface $request
+	 * @param \PinkCrab\Ajax\Dispatcher\Response_Factory $response_factory
+	 * @return \Psr\Http\Message\ResponseInterface
+	 */
+	public function callback(
+		ServerRequestInterface $request,
+		Response_Factory $response_factory
+	): ResponseInterface {
+        // Return something 
+        return $response_factory->success( 'something' );
+    }
+}
+```
