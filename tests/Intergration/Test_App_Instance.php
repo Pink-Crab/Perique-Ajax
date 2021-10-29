@@ -15,6 +15,7 @@ namespace PinkCrab\Ajax\Tests\Intergration;
 
 use Exception;
 use PinkCrab\HTTP\HTTP_Helper;
+use PinkCrab\Ajax\Ajax_Bootstrap;
 use Gin0115\WPUnit_Helpers\Objects;
 use Psr\Http\Message\ServerRequestInterface;
 use PinkCrab\Perique\Application\App_Factory;
@@ -29,18 +30,13 @@ class Test_App_Instance extends Ajax_BaseCase {
 	/** @testdox It should be possible to add the Ajax Dispatcher in as Registration Middleware as part of the Prique Framework. You then should be able to just add Ajax Models to the Registration list used for the internal Registeration system.  */
 	public function test_app_instance(): void {
 
+		// Bootstrap with Perique
+		Ajax_Bootstrap::use();
+
 		// Construct the app
 		$app = ( new App_Factory )->with_wp_dice( true )
 			->app_config( array() )
-			->di_rules(
-				array(
-					'*' => array(
-						'substitutions' => array(
-							ServerRequestInterface::class => HTTP_Helper::global_server_request(),
-						),
-					),
-				)
-			)
+			->di_rules( array() )
 			->registration_classes(
 				array(
 					Has_Nonce_Ajax::class,
@@ -68,4 +64,5 @@ class Test_App_Instance extends Ajax_BaseCase {
 		$this->assertTrue( $hooks[1]->is_registered() );
 		$this->assertTrue( \has_action( 'wp_ajax_' . $hooks[1]->get_handle() ) );
 	}
+
 }
