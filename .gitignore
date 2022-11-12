@@ -5,3 +5,4 @@ coverage.xml
 clover.xml
 /coverage-report
 /.vscode
+.phpunit.result.cache

@@ -36,7 +36,7 @@ class Ajax_Middleware implements Registration_Middleware {
 	public function process( $class ) {
 		if ( is_a( $class, Ajax::class )
 		&& is_admin()
-		&& ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX )
+		&& wp_doing_ajax()
 		) {
 			$this->dispatcher->add_ajax_call( $class );
 		}

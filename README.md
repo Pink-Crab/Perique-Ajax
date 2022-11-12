@@ -2,12 +2,14 @@
 
 A simple but powerful Ajax library for the PinkCrab Perique framework. Allows for the creation of object based Ajax calls that handle all basic Nonce validation, WP Actions and makes use of the HTTP PSR Interfaces.
 
-![alt text](https://img.shields.io/badge/Current_Version-1.0.2-yellow.svg?style=flat " ") 
-[![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)]()
-![](https://github.com/Pink-Crab/Perique-Ajax/workflows/GitHub_CI/badge.svg " ")
+[![Latest Stable Version](http://poser.pugx.org/pinkcrab/ajax/v)](https://packagist.org/packages/pinkcrab/ajax) [![Total Downloads](http://poser.pugx.org/pinkcrab/ajax/downloads)](https://packagist.org/packages/pinkcrab/ajax) [![Latest Unstable Version](http://poser.pugx.org/pinkcrab/ajax/v/unstable)](https://packagist.org/packages/pinkcrab/ajax) [![License](http://poser.pugx.org/pinkcrab/ajax/license)](https://packagist.org/packages/pinkcrab/ajax) [![PHP Version Require](http://poser.pugx.org/pinkcrab/ajax/require/php)](https://packagist.org/packages/pinkcrab/ajax)
 [![codecov](https://codecov.io/gh/Pink-Crab/Perique-Ajax/branch/master/graph/badge.svg?token=NEZOz6FsKK)](https://codecov.io/gh/Pink-Crab/Perique-Ajax)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Ajax/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Ajax/?branch=master)
+[![WordPress 5.8 Test Suite](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_5_8.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_5_8.yaml)
+[![WordPress 5.9 Test Suite](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_5_9.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_5_9.yaml)
+[![WordPress 6.0 Test Suite](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_0.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_0.yaml)
 
-## Version 1.0.2 ##
+## Version 1.0.3 ##
 
 ****
 
@@ -51,17 +53,17 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class My_Ajax extends Ajax {
 
-	/**
-	 * Define the action to call.
-	 * @var string
-	 */
-	protected $action = 'my_ajax_action';
+    /**
+     * Define the action to call.
+     * @var string
+     */
+    protected $action = 'my_ajax_action';
 
     /**
-	 * The ajax calls nonce handle.
-	 * @var string
-	 */
-	protected $nonce_handle = 'my_ajax_nonce';
+     * The ajax calls nonce handle.
+     * @var string
+     */
+    protected $nonce_handle = 'my_ajax_nonce';
 
     /** 
      * Some service which handles the logic of the call.
@@ -73,22 +75,22 @@ class My_Ajax extends Ajax {
      * Constructs the object
      * My_Service will be injected when this is created by the DI Container
      */
-	public function __construct( Some_Service $my_service ) {
-		$this->my_service = $my_service;
-	}
+    public function __construct( Some_Service $my_service ) {
+        $this->my_service = $my_service;
+    }
 
-	/**
-	 * The callback
-	 *
-	 * @param \Psr\Http\Message\ServerRequestInterface $request
-	 * @param \PinkCrab\Ajax\Dispatcher\Response_Factory $response_factory
-	 * @return \Psr\Http\Message\ResponseInterface
-	 */
-	public function callback(
-		ServerRequestInterface $request,
-		Response_Factory $response_factory
-	): ResponseInterface {
-		
+    /**
+     * The callback
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \PinkCrab\Ajax\Dispatcher\Response_Factory $response_factory
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function callback(
+        ServerRequestInterface $request,
+        Response_Factory $response_factory
+    ): ResponseInterface {
+        
         // Extract the args from the request, you can also do this manually
         $args = Ajax_Helper::extract_server_request_args( $request );
 
@@ -99,7 +101,7 @@ class My_Ajax extends Ajax {
         
         // Return with a valid PSR Response. 
         return $response_factory->success( $data_to_return );
-	}
+    }
 }
 
 ```
@@ -134,6 +136,7 @@ return [
 http://www.opensource.org/licenses/mit-license.html  
 
 ## Change Log ##
+* 1.0.3 - Update dev deps, update GH Pipeline and improve conditional on checking if doing ajax.
 * 1.0.2 - Added in Ajax_Bootstrap class with ::use() method, for simpler inclusion with Perique. Docs improved as part of Perique.info site
 * 1.0.1 - Update yoast/phpunit-polyfills requirement from ^0.2.0 to ^0.2.0 || ^1.0.0 by @dependabot in #13
 * 1.0.0 - Supports Perique 1.0.0 and includes checks to ensure only added when wp_ajax called
