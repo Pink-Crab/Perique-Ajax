@@ -77,7 +77,7 @@ class Ajax_Controller {
 	 */
 	public function invoke_callback( Ajax $ajax_class ): ResponseInterface {
 		return $ajax_class->callback(
-			\apply_filters( Ajax_Hooks::CALLBACK_REQUEST_FILTER, $this->server_request, $ajax_class ), /* @phpstan-ignore-line */
+			\apply_filters( Ajax_Hooks::CALLBACK_REQUEST_FILTER, $this->server_request, $ajax_class ),
 			$this->response_factory
 		);
 	}
@@ -98,7 +98,6 @@ class Ajax_Controller {
 		 */
 		return function() use ( $ajax_class ): void {
 
-			/** @phpstan-ignore-next-line */
 			$valid_nonce = apply_filters(
 				Ajax_Hooks::REQUEST_NONCE_VERIFICATION,
 				$this->validate_request( $ajax_class ),
@@ -117,7 +116,6 @@ class Ajax_Controller {
 				$response = $this->response_factory->failure( array( 'error' => $th->getMessage() ) );
 			}
 			$this->http_helper->emit_psr7_response(
-				/** @phpstan-ignore-next-line */
 				\apply_filters( Ajax_Hooks::CALLBACK_RESPONSE_FILTER, $response, $ajax_class, $this->server_request )
 			);
 
