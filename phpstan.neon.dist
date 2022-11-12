@@ -11,4 +11,4 @@ parameters:
     bootstrapFiles:
         - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
     ignoreErrors:
-		- '#Function apply_filters invoked with#'
+		- '#Function apply_filters invoked with \d parameters, \d required#'
