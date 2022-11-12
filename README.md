@@ -9,7 +9,7 @@ A simple but powerful Ajax library for the PinkCrab Perique framework. Allows fo
 [![WordPress 5.9 Test Suite](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_5_9.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_5_9.yaml)
 [![WordPress 6.0 Test Suite](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_0.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_0.yaml)
 
-## Version 1.0.2 ##
+## Version 1.0.3 ##
 
 ****
 
@@ -136,6 +136,7 @@ return [
 http://www.opensource.org/licenses/mit-license.html  
 
 ## Change Log ##
+* 1.0.3 - Update dev deps, update GH Pipeline and improve conditional on checking if doing ajax.
 * 1.0.2 - Added in Ajax_Bootstrap class with ::use() method, for simpler inclusion with Perique. Docs improved as part of Perique.info site
 * 1.0.1 - Update yoast/phpunit-polyfills requirement from ^0.2.0 to ^0.2.0 || ^1.0.0 by @dependabot in #13
 * 1.0.0 - Supports Perique 1.0.0 and includes checks to ensure only added when wp_ajax called
