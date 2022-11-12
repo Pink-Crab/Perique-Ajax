@@ -51,17 +51,17 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class My_Ajax extends Ajax {
 
-	/**
-	 * Define the action to call.
-	 * @var string
-	 */
-	protected $action = 'my_ajax_action';
+    /**
+     * Define the action to call.
+     * @var string
+     */
+    protected $action = 'my_ajax_action';
 
     /**
-	 * The ajax calls nonce handle.
-	 * @var string
-	 */
-	protected $nonce_handle = 'my_ajax_nonce';
+     * The ajax calls nonce handle.
+     * @var string
+     */
+    protected $nonce_handle = 'my_ajax_nonce';
 
     /** 
      * Some service which handles the logic of the call.
@@ -73,22 +73,22 @@ class My_Ajax extends Ajax {
      * Constructs the object
      * My_Service will be injected when this is created by the DI Container
      */
-	public function __construct( Some_Service $my_service ) {
-		$this->my_service = $my_service;
-	}
+    public function __construct( Some_Service $my_service ) {
+        $this->my_service = $my_service;
+    }
 
-	/**
-	 * The callback
-	 *
-	 * @param \Psr\Http\Message\ServerRequestInterface $request
-	 * @param \PinkCrab\Ajax\Dispatcher\Response_Factory $response_factory
-	 * @return \Psr\Http\Message\ResponseInterface
-	 */
-	public function callback(
-		ServerRequestInterface $request,
-		Response_Factory $response_factory
-	): ResponseInterface {
-		
+    /**
+     * The callback
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \PinkCrab\Ajax\Dispatcher\Response_Factory $response_factory
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function callback(
+        ServerRequestInterface $request,
+        Response_Factory $response_factory
+    ): ResponseInterface {
+        
         // Extract the args from the request, you can also do this manually
         $args = Ajax_Helper::extract_server_request_args( $request );
 
@@ -99,7 +99,7 @@ class My_Ajax extends Ajax {
         
         // Return with a valid PSR Response. 
         return $response_factory->success( $data_to_return );
-	}
+    }
 }
 
 ```

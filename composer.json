@@ -23,18 +23,19 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.0",
-        "roots/wordpress": "^5.5",
-        "wp-phpunit/wp-phpunit": "^5.0",
-        "symfony/var-dumper": "4.*",
-        "phpstan/phpstan": "^0.12.6",
-        "szepeviktor/phpstan-wordpress": "^0.7.2",
-        "php-stubs/wordpress-stubs": "^5.6.0",
+        "phpunit/phpunit": "^7.0 || ^8.0",
+        "phpstan/phpstan": "^1.0",
+        "szepeviktor/phpstan-wordpress": "^1.0",
+        "php-stubs/wordpress-stubs": "^6.0 || ^5.9",
+        "roots/wordpress": "^6.0",
+        "wp-phpunit/wp-phpunit": "^6.0",
         "dealerdirect/phpcodesniffer-composer-installer": "*",
         "wp-coding-standards/wpcs": "*",
         "object-calisthenics/phpcs-calisthenics-rules": "*",
         "yoast/phpunit-polyfills": "^0.2.0 || ^1.0.0",
-        "gin0115/wpunit-helpers": "~1.0.0"
+        "symfony/var-dumper": "*",
+        "gin0115/wpunit-helpers": "~1",
+        "vlucas/phpdotenv": "^5.4"
     },
     "require": {
         "php": ">=7.1.0",
@@ -44,10 +45,16 @@
         "pinkcrab/wp-nonce": "*"
     },
     "scripts": {
-        "test": "phpunit --coverage-clover clover.xml --testdox",
-        "coverage": "phpunit --coverage-html coverage-report --testdox",
+        "test": "vendor/bin/phpunit --colors=always --testdox --coverage-clover clover.xml",
+        "coverage": "vendor/bin/phpunit --colors=always --testdox --coverage-html coverage-report",
         "analyse": "vendor/bin/phpstan analyse src -l8",
         "sniff": "./vendor/bin/phpcs src/ -v",
-        "all": "composer test && composer analyse && composer sniff"
+        "all": "composer coverage && composer analyse && composer sniff"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "roots/wordpress-core-installer": true
+        }
     }
 }
