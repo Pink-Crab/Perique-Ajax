@@ -2,10 +2,13 @@
 
 A simple but powerful Ajax library for the PinkCrab Perique framework. Allows for the creation of object based Ajax calls that handle all basic Nonce validation, WP Actions and makes use of the HTTP PSR Interfaces.
 
-![alt text](https://img.shields.io/badge/Current_Version-1.0.2-yellow.svg?style=flat " ") 
+![alt text](https://img.shields.io/badge/Current_Version-1.0.2-green.svg?style=flat " ") 
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)]()
-![](https://github.com/Pink-Crab/Perique-Ajax/workflows/GitHub_CI/badge.svg " ")
 [![codecov](https://codecov.io/gh/Pink-Crab/Perique-Ajax/branch/master/graph/badge.svg?token=NEZOz6FsKK)](https://codecov.io/gh/Pink-Crab/Perique-Ajax)
+
+[![WordPress 5.8 Test Suite](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_5_8.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_5_8.yaml)
+[![WordPress 5.9 Test Suite](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_5_9.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_5_9.yaml)
+[![WordPress 6.0 Test Suite](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_0.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_0.yaml)
 
 ## Version 1.0.2 ##
 
