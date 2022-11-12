@@ -10,3 +10,5 @@ parameters:
         - %currentWorkingDirectory%/tests/*
     bootstrapFiles:
         - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+    ignoreErrors:
+		- '#Function apply_filters invoked with#'
