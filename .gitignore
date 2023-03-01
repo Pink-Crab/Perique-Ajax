@@ -6,3 +6,5 @@ clover.xml
 /coverage-report
 /.vscode
 .phpunit.result.cache
+tests/.env
+tests/.env
