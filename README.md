@@ -14,7 +14,7 @@ A simple but powerful Ajax library for the PinkCrab Perique framework. Allows fo
 ****
 
 ## Why? ##
-Writing Ajax scripts for WordPress can get messy really quickly, with the need to define upto 2 actions with a shared callback. The Perique Ajax Module makes use of the registration and dependecny injection aspects of the framework. This allows for the injection of services into your callback, allowing for clean and testable code.
+Writing Ajax scripts for WordPress can get messy really quickly, with the need to define up to 2 actions with a shared callback. The Perique Ajax Module makes use of the registration and dependency injection aspects of the framework. This allows for the injection of services into your callback, allowing for clean and testable code.
 
 ****
 
@@ -135,7 +135,13 @@ return [
 ### MIT License ###
 http://www.opensource.org/licenses/mit-license.html  
 
+## Pre-Release ##
+
+* For Perique 1.3.*, use version 1.0.4
+* For Perique 1.0.* - 1.2.*, use version 1.0.3
+
 ## Change Log ##
+* 1.1.0 - Bump support for Perique 1.4.0
 * 1.0.4 - Update dev deps to wp6.1 and PinkCrab/HTTP 1.*, Drop Support for PHP 7.1
 * 1.0.3 - Update dev deps, update GH Pipeline and improve conditional on checking if doing ajax.
 * 1.0.2 - Added in Ajax_Bootstrap class with ::use() method, for simpler inclusion with Perique. Docs improved as part of Perique.info site

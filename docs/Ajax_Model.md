@@ -1,4 +1,3 @@
-
 ## Ajax Models ##
 
 Each ajax call is defined as a model, this is used to define the properties (action, nonce, priv/non_priv) and the callback used. As each Model is constructed using the DI Container, all dependenices can be injected. 
