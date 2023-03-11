@@ -1,4 +1,3 @@
-
 ## Response Factory ##
 
 We make use of the PSR HTTP Messaging interface throughout this module, as a result all responses should be returned as valid PSR7 Response Objects. To make this a little easier and cleaner, we have injected a `Response_Factory` into the callback method. This allows you to quickly return a response and have all payloads encoded as expected.
