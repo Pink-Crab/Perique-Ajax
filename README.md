@@ -35,7 +35,7 @@ Ajax_Bootstrap::use();
 
 // Boot the app as normal.
 $app = ( new App_Factory )      
-    ->with_wp_dice( true )
+    ->default_setup()
     ->boot();
 
 // Include the custom middleware.
