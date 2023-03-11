@@ -1,4 +1,3 @@
-
 ### Example ###
 
 > Create the Ajax callback object.
