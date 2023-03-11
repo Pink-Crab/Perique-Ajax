@@ -34,7 +34,9 @@ class Test_App_Instance extends Ajax_BaseCase {
 		Ajax_Bootstrap::use();
 
 		// Construct the app
-		$app = ( new App_Factory )->with_wp_dice( true )
+		$app = ( new App_Factory( ) )
+			->set_base_view_path( FIXTURES_PATH )
+			->default_setup()
 			->app_config( array() )
 			->di_rules( array() )
 			->registration_classes(

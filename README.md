@@ -10,21 +10,22 @@ A simple but powerful Ajax library for the PinkCrab Perique framework. Allows fo
 [![WordPress 6.1 Test Suite [PHP7.2-8.1]](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_1.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_1.yaml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/7534ee9d3ab6a5785386/maintainability)](https://codeclimate.com/github/Pink-Crab/Perique-Ajax/maintainability)
 
-
 ****
 
 ## Why? ##
+
 Writing Ajax scripts for WordPress can get messy really quickly, with the need to define up to 2 actions with a shared callback. The Perique Ajax Module makes use of the registration and dependency injection aspects of the framework. This allows for the injection of services into your callback, allowing for clean and testable code.
 
 ****
 
 ## Setup ##
 
->*Requires the PinkCrab Perique Framework and Composer*
+> *Requires the PinkCrab Perique Framework and Composer*
 
 **Install the Module using composer**
 ```bash 
 $ composer require pinkcrab/ajax
+
 ```
 **Include the custom Ajax Middleware**
 ```php
@@ -35,21 +36,23 @@ Ajax_Bootstrap::use();
 
 // Boot the app as normal.
 $app = ( new App_Factory )      
-    ->with_wp_dice( true )
+    ->default_setup()
     ->boot();
 
 // Include the custom middleware.
 $app->construct_registration_middleware( Ajax_Middleware::class );
 ```
+
 ## Usage ##
 
 **Create your Ajax Models**
+
 ```php
 use PinkCrab\Ajax\Ajax;
-use PinkCrab\Ajax\Dispatcher\Response_Factory;
 use PinkCrab\Ajax\Ajax_Helper;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use PinkCrab\Ajax\Dispatcher\Response_Factory;
 
 class My_Ajax extends Ajax {
 
@@ -105,9 +108,11 @@ class My_Ajax extends Ajax {
 }
 
 ```
+
 > This would have an ajax call with `my_ajax_action` action assigned. 
 
-**Add all your Ajax Models to `registration.php`**
+**Add all your Ajax Models to `registration.php` **
+
 ```php
 // file:registration.php
 
@@ -121,6 +126,7 @@ return [
 ****
 
 ## Perique Ajax Documentation
+
 * [Ajax Model](docs/Ajax_Model.md)
 * [Ajax Helper](docs/Ajax_Helper.md)
 * [Response Factory](docs/Response_Factory.md)
@@ -129,10 +135,10 @@ return [
 
 ***
 
-
 ## License ##
 
 ### MIT License ###
+
 http://www.opensource.org/licenses/mit-license.html  
 
 ## Pre-Release ##
@@ -141,6 +147,7 @@ http://www.opensource.org/licenses/mit-license.html
 * For Perique 1.0.* - 1.2.*, use version 1.0.3
 
 ## Change Log ##
+
 * 1.1.0 - Bump support for Perique 1.4.0
 * 1.0.4 - Update dev deps to wp6.1 and PinkCrab/HTTP 1.*, Drop Support for PHP 7.1
 * 1.0.3 - Update dev deps, update GH Pipeline and improve conditional on checking if doing ajax.
