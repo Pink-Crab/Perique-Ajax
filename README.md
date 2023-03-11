@@ -135,6 +135,11 @@ return [
 ### MIT License ###
 http://www.opensource.org/licenses/mit-license.html  
 
+## Pre-Release ##
+
+* For Perique 1.3.*, use version 1.0.4
+* For Perique 1.0.* - 1.2.*, use version 1.0.3
+
 ## Change Log ##
 * 1.1.0 - Bump support for Perique 1.4.0
 * 1.0.4 - Update dev deps to wp6.1 and PinkCrab/HTTP 1.*, Drop Support for PHP 7.1
