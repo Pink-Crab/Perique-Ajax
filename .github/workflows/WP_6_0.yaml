@@ -4,14 +4,14 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master, develop ]
+    branches: [ master, develop, perique-v2-dev ]
 
 jobs:
   build:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: ['7.2', '7.3', '7.4', '8.0', '8.1']
+        php-versions: ['7.4', '8.0', '8.1']
     runs-on: ${{ matrix.operating-system }}
     services:
       # Setup MYSQL

@@ -27,7 +27,7 @@ Writing Ajax scripts for WordPress can get messy really quickly, with the need t
 $ composer require pinkcrab/ajax
 
 ```
-**Include the custom Ajax Middleware**
+**Include the custom Ajax Module**
 ```php
 // file:plugin.php
 
@@ -39,8 +39,8 @@ $app = ( new App_Factory )
     ->default_setup()
     ->boot();
 
-// Include the custom middleware.
-$app->construct_registration_middleware( Ajax_Middleware::class );
+// Include the module.
+$app->module( \PinkCrab\Ajax\Module\Ajax::class );
 ```
 
 ## Usage ##

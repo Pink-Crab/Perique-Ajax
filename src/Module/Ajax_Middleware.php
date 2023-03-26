@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @package PinkCrab\Ajax
  */
 
-namespace PinkCrab\Ajax\Registration_Middleware;
+namespace PinkCrab\Ajax\Module;
 
 use PinkCrab\Ajax\Ajax;
 use PinkCrab\Ajax\Dispatcher\Ajax_Dispatcher;
@@ -33,7 +33,7 @@ class Ajax_Middleware implements Registration_Middleware {
 	 * @param object $class
 	 * @return object
 	 */
-	public function process( $class ) {
+	public function process( object $class ): object {
 		if ( is_a( $class, Ajax::class )
 		&& is_admin()
 		&& wp_doing_ajax()
