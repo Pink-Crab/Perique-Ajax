@@ -1,6 +1,5 @@
 ![logo](docs/Ajax.jpg "PinkCrab Ajax Module")
 
-
 # Perique - Ajax
 
 A simple but powerful Ajax library for the PinkCrab Perique framework. Allows for the creation of object based Ajax calls that handle all basic Nonce validation, WP Actions and makes use of the HTTP PSR Interfaces.
