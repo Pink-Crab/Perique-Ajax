@@ -1,3 +1,6 @@
+![logo](docs/Ajax.jpg "PinkCrab Ajax Module")
+
+
 # Perique - Ajax
 
 A simple but powerful Ajax library for the PinkCrab Perique framework. Allows for the creation of object based Ajax calls that handle all basic Nonce validation, WP Actions and makes use of the HTTP PSR Interfaces.
@@ -27,7 +30,7 @@ Writing Ajax scripts for WordPress can get messy really quickly, with the need t
 $ composer require pinkcrab/ajax
 
 ```
-**Include the custom Ajax Middleware**
+**Include the custom Ajax Module**
 ```php
 // file:plugin.php
 
@@ -39,8 +42,8 @@ $app = ( new App_Factory )
     ->default_setup()
     ->boot();
 
-// Include the custom middleware.
-$app->construct_registration_middleware( Ajax_Middleware::class );
+// Include the module.
+$app->module( \PinkCrab\Ajax\Module\Ajax::class );
 ```
 
 ## Usage ##
@@ -143,11 +146,13 @@ http://www.opensource.org/licenses/mit-license.html
 
 ## Pre-Release ##
 
+* For Perique 1.4.*, use version 1.1.0
 * For Perique 1.3.*, use version 1.0.4
 * For Perique 1.0.* - 1.2.*, use version 1.0.3
 
 ## Change Log ##
 
+* 2.0.0 - Bump support for Perique 2.0.0, remove Ajax::bootstrap() and replace with the Ajax Module.
 * 1.1.0 - Bump support for Perique 1.4.0
 * 1.0.4 - Update dev deps to wp6.1 and PinkCrab/HTTP 1.*, Drop Support for PHP 7.1
 * 1.0.3 - Update dev deps, update GH Pipeline and improve conditional on checking if doing ajax.
