@@ -1,6 +1,6 @@
 ![logo](docs/Ajax.jpg "PinkCrab Ajax Module")
 
-# Perique - Ajax
+# Ajax
 
 A simple but powerful Ajax library for the PinkCrab Perique framework. Allows for the creation of object based Ajax calls that handle all basic Nonce validation, WP Actions and makes use of the HTTP PSR Interfaces.
 
@@ -20,6 +20,16 @@ Writing Ajax scripts for WordPress can get messy really quickly, with the need t
 
 ****
 
+## Perique Ajax Documentation
+
+* [Ajax Model](docs/Ajax_Model.md)
+* [Ajax Helper](docs/Ajax_Helper.md)
+* [Response Factory](docs/Response_Factory.md)
+* [Hooks](docs/Hooks.md)
+* [Example](docs/Examples.md)
+
+****
+
 ## Setup ##
 
 > *Requires the PinkCrab Perique Framework and Composer*
@@ -27,22 +37,16 @@ Writing Ajax scripts for WordPress can get messy really quickly, with the need t
 **Install the Module using composer**
 ```bash 
 $ composer require pinkcrab/ajax
-
 ```
 **Include the custom Ajax Module**
 ```php
 // file:plugin.php
 
-// Include all DI rules
-Ajax_Bootstrap::use();
-
-// Boot the app as normal.
+// Boot the app as normal, including the module.
 $app = ( new App_Factory )      
     ->default_setup()
+    ->module( \PinkCrab\Ajax\Module\Ajax::class )
     ->boot();
-
-// Include the module.
-$app->module( \PinkCrab\Ajax\Module\Ajax::class );
 ```
 
 ## Usage ##
@@ -125,16 +129,6 @@ return [
 ];
 ```
 
-****
-
-## Perique Ajax Documentation
-
-* [Ajax Model](docs/Ajax_Model.md)
-* [Ajax Helper](docs/Ajax_Helper.md)
-* [Response Factory](docs/Response_Factory.md)
-* [Hooks](docs/Hooks.md)
-* [Examples](docs/Examples.md)
-
 ***
 
 ## License ##
@@ -156,6 +150,6 @@ http://www.opensource.org/licenses/mit-license.html
 * 1.0.4 - Update dev deps to wp6.1 and PinkCrab/HTTP 1.*, Drop Support for PHP 7.1
 * 1.0.3 - Update dev deps, update GH Pipeline and improve conditional on checking if doing ajax.
 * 1.0.2 - Added in Ajax_Bootstrap class with ::use() method, for simpler inclusion with Perique. Docs improved as part of Perique.info site
-* 1.0.1 - Update yoast/phpunit-polyfills requirement from ^0.2.0 to ^0.2.0 || ^1.0.0 by @dependabot in #13
+* 1.0.1 - Update yoast/phpunit-polyfills requirement from ^0.2.0 to ^0.2.0 \|\| ^1.0.0 by @dependabot in #13
 * 1.0.0 - Supports Perique 1.0.0 and includes checks to ensure only added when wp_ajax called
 * 0.1.0 Extracted from the Registerables module. Now makes use of a custom Registration_Middleware service for dispatching all Ajax calls.
