@@ -41,7 +41,7 @@ class Ajax_Helper {
 	 *
 	 * @var array<string,Ajax>
 	 */
-	private static $class_cache = array();
+	private static array $class_cache = array();
 
 	/**
 	 * Returns the admin ajax url.
