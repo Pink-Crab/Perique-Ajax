@@ -34,17 +34,10 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class Ajax_Controller {
 
-	/** @var ServerRequestInterface */
-	protected $server_request;
-
-	/** @var Response_Factory */
-	protected $response_factory;
-
-	/** @var HTTP */
-	protected $http_helper;
-
-	/** @var Ajax_Request_Validator */
-	protected $request_validator;
+	protected ServerRequestInterface $server_request;
+	protected Response_Factory $response_factory;
+	protected HTTP $http_helper;
+	protected Ajax_Request_Validator $request_validator;
 
 	public function __construct(
 		ServerRequestInterface $server_request,

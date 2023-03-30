@@ -32,8 +32,7 @@ use Psr\Http\Message\ResponseFactoryInterface;
 
 class Response_Factory implements ResponseFactoryInterface {
 
-	/** @var HTTP */
-	protected $http;
+	protected HTTP $http;
 
 	public function __construct( HTTP $http ) {
 		$this->http = $http;

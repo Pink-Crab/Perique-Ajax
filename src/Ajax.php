@@ -37,28 +37,28 @@ abstract class Ajax {
 	 * @var string|null
 	 * @required
 	 */
-	protected $action;
+	protected ?string $action = null;
 
 	/**
 	 * The ajax calls nonce handle.
 	 *
 	 * @var string|null
 	 */
-	protected $nonce_handle;
+	protected ?string $nonce_handle = null;
 
 	/**
 	 * The field name/id for the nonce field.
 	 *
 	 * @var string
 	 */
-	protected $nonce_field = 'nonce';
+	protected string $nonce_field = 'nonce';
 
 	/**
 	 * Should the ajax call be registered if the user is logged in.
 	 *
 	 * @var boolean
 	 */
-	protected $logged_in = true;
+	protected bool $logged_in = true;
 
 	/**
 	 * Should the ajax call be registered if the user is not logged in

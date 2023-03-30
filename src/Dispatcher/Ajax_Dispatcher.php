@@ -31,11 +31,8 @@ use PinkCrab\Ajax\Dispatcher\Ajax_Controller;
 
 class Ajax_Dispatcher {
 
-	/** @var Hook_Loader */
-	protected $loader;
-
-	/** @var Ajax_Controller */
-	protected $ajax_controller;
+	protected Hook_Loader $loader;
+	protected Ajax_Controller $ajax_controller;
 
 	public function __construct( Ajax_Controller $ajax_controller ) {
 		$this->loader          = new Hook_Loader();

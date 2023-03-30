@@ -20,8 +20,7 @@ use PinkCrab\Perique\Interfaces\Registration_Middleware;
 
 class Ajax_Middleware implements Registration_Middleware {
 
-	/** @var Ajax_Dispatcher */
-	public $dispatcher;
+	public Ajax_Dispatcher $dispatcher;
 
 	public function __construct( Ajax_Dispatcher $dispatcher ) {
 		$this->dispatcher = $dispatcher;

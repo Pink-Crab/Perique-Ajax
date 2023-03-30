@@ -29,19 +29,19 @@ class Failure_Ajax extends Ajax {
 	 * Define the action to call.
 	 * @var string
 	 */
-	protected $action = self::ACTION;
+	protected ?string $action = self::ACTION;
 
 	/**
 	 * The ajax calls nonce handle.
 	 * @var string
 	 */
-	protected $nonce_handle = self::NONCE_HANDLE;
+	protected ?string $nonce_handle = self::NONCE_HANDLE;
 
 	/**
 	 * The nonce field
 	 * @var string
 	 */
-	protected $nonce_field = self::NONCE_FIELD;
+	protected string $nonce_field = self::NONCE_FIELD;
 
 	/**
 	 * The callback

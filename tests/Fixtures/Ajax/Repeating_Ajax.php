@@ -27,7 +27,7 @@ class Repeating_Ajax extends Ajax {
 	 * Define the action to call.
 	 * @var string
 	 */
-	protected $action = self::ACTION;
+	protected ?string $action = self::ACTION;
 
 	/**
 	 * The callback
