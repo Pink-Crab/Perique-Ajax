@@ -55,7 +55,5 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "roots/wordpress-core-installer": true
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
