@@ -31,8 +31,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class Ajax_Request_Validator {
 
-	/** @var ServerRequestInterface */
-	protected $server_request;
+	protected ServerRequestInterface $server_request;
 
 	public function __construct( ServerRequestInterface $server_request ) {
 		$this->server_request = $server_request;
