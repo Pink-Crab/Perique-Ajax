@@ -35,7 +35,7 @@ Writing Ajax scripts for WordPress can get messy really quickly, with the need t
 
 ## Setup ##
 
-> *Requires the PinkCrab Perique Framework and Composer*
+> *Requires the PinkCrab Perique Framework v2 and Composer*
 
 **Install the Module using composer**
 ```bash 
