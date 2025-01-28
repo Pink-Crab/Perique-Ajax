@@ -49,7 +49,7 @@ class Ajax_Dispatcher {
 	public function add_ajax_call( Ajax $ajax ): void {
 
 		if ( ! $ajax->has_valid_action() ) {
-			throw Ajax_Exception::undefined_action( \get_class( $ajax ) );
+			throw Ajax_Exception::undefined_action( esc_attr( \get_class( $ajax ) ) );
 		}
 
 		$this->loader->ajax(
@@ -68,5 +68,4 @@ class Ajax_Dispatcher {
 	public function execute(): void {
 		$this->loader->register_hooks();
 	}
-
 }

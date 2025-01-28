@@ -18,7 +18,8 @@
 		<exclude name="WordPress.WP.AlternativeFunctions.curl_curl_init"/>
 		<exclude name="WordPress.WP.AlternativeFunctions.curl_curl_close"/>
 		<exclude name="WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents"/>
-		<exclude name="WordPress.PHP.DisallowShortTernary.Found"/>
+		<exclude name="Universal.Operators.DisallowShortTernary.Found"/>
+		<exclude name="PSR12.Files.FileHeader.IncorrectOrder" />
 	</rule>
 
 	<!-- Add in some extra rules from other standards. -->
