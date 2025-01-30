@@ -149,6 +149,7 @@ http://www.opensource.org/licenses/mit-license.html
 
 ## Change Log ##
 
+* 2.1.0 - Bump support for Perique 2.1.0, update deps.
 * 2.0.0 - Bump support for Perique 2.0.0, remove Ajax::bootstrap() and replace with the Ajax Module.
 * 1.1.0 - Bump support for Perique 1.4.0
 * 1.0.4 - Update dev deps to wp6.1 and PinkCrab/HTTP 1.*, Drop Support for PHP 7.1
