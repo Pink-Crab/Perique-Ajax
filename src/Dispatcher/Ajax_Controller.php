@@ -89,7 +89,7 @@ class Ajax_Controller {
 		 * @param \PinkCrab\Ajax\Ajax $ajax_class
 		 * @return noreturn
 		 */
-		return function() use ( $ajax_class ): void {
+		return function () use ( $ajax_class ): void {
 
 			$valid_nonce = apply_filters(
 				Ajax_Hooks::REQUEST_NONCE_VERIFICATION,

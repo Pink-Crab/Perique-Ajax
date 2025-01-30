@@ -29,17 +29,17 @@ class Ajax_Middleware implements Registration_Middleware {
 	/**
 	 * Add all valid ajax calls to the dispatcher.
 	 *
-	 * @param object $class
+	 * @param object $class_instance
 	 * @return object
 	 */
-	public function process( object $class ): object {
-		if ( is_a( $class, Ajax::class )
+	public function process( object $class_instance ): object {
+		if ( is_a( $class_instance, Ajax::class )
 		&& is_admin()
 		&& wp_doing_ajax()
 		) {
-			$this->dispatcher->add_ajax_call( $class );
+			$this->dispatcher->add_ajax_call( $class_instance );
 		}
-		return $class;
+		return $class_instance;
 	}
 
 	public function setup(): void {
