@@ -74,5 +74,4 @@ class Ajax_Request_Validator {
 			? $args[ $nonce_field ]
 			: null;
 	}
-
 }

@@ -30,6 +30,7 @@ class Ajax_Exception extends Exception {
 
 	/**
 	 * Class is not an Ajax::class
+	 *
 	 * @code 100
 	 * @param string $operation The operation being carries out.
 	 * @return Ajax_Exception
@@ -41,13 +42,13 @@ class Ajax_Exception extends Exception {
 
 	/**
 	 * Ajax::class has no defined action.
+	 *
 	 * @code 101
-	 * @param string $class Ajax class
+	 * @param string $class_string Ajax class
 	 * @return Ajax_Exception
 	 */
-	public static function undefined_action( string $class ): Ajax_Exception {
-		$message = "{$class} has no defined action property";
+	public static function undefined_action( string $class_string ): Ajax_Exception {
+		$message = "{$class_string} has no defined action property";
 		return new Ajax_Exception( $message, 101 );
 	}
-
 }

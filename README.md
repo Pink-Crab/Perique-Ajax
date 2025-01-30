@@ -4,12 +4,13 @@
 
 A simple but powerful Ajax library for the PinkCrab Perique framework. Allows for the creation of object based Ajax calls that handle all basic Nonce validation, WP Actions and makes use of the HTTP PSR Interfaces.
 
-[![Latest Stable Version](http://poser.pugx.org/pinkcrab/ajax/v)](https://packagist.org/packages/pinkcrab/ajax) [![Total Downloads](http://poser.pugx.org/pinkcrab/ajax/downloads)](https://packagist.org/packages/pinkcrab/ajax) [![Latest Unstable Version](http://poser.pugx.org/pinkcrab/ajax/v/unstable)](https://packagist.org/packages/pinkcrab/ajax) [![License](http://poser.pugx.org/pinkcrab/ajax/license)](https://packagist.org/packages/pinkcrab/ajax) [![PHP Version Require](http://poser.pugx.org/pinkcrab/ajax/require/php)](https://packagist.org/packages/pinkcrab/ajax)
+[![Latest Stable Version](https://poser.pugx.org/pinkcrab/ajax/v)](https://packagist.org/packages/pinkcrab/ajax) [![Total Downloads](https://poser.pugx.org/pinkcrab/ajax/downloads)](https://packagist.org/packages/pinkcrab/ajax) [![Latest Unstable Version](https://poser.pugx.org/pinkcrab/ajax/v/unstable)](https://packagist.org/packages/pinkcrab/ajax) [![License](https://poser.pugx.org/pinkcrab/ajax/license)](https://packagist.org/packages/pinkcrab/ajax) [![PHP Version Require](https://poser.pugx.org/pinkcrab/ajax/require/php)](https://packagist.org/packages/pinkcrab/ajax)
 
-[![WordPress 5.9 Test Suite [PHP7.2-8.1]](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_5_9.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_5_9.yaml)
-[![WordPress 6.0 Test Suite [PHP7.2-8.1]](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_0.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_0.yaml)
-[![WordPress 6.1 Test Suite [PHP7.2-8.1]](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_1.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_1.yaml)
-[![WP6.2 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_2.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_2.yaml)
+[![WordPress 6.3 Test Suite [PHP7.4-8.2]](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_3.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_3.yaml)
+[![WordPress 6.4 Test Suite [PHP7.4-8.2]](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_4.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_4.yaml)
+[![WordPress 6.5 Test Suite [PHP7.4-8.3]](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_5.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_5.yaml)
+[![WP6.6 [PHP7.4-8.4] Tests](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_6.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_6.yaml)
+[![WP6.7 [PHP7.4-8.4] Tests](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_7.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_7.yaml)
 
 [![codecov](https://codecov.io/gh/Pink-Crab/Perique-Ajax/branch/master/graph/badge.svg?token=NEZOz6FsKK)](https://codecov.io/gh/Pink-Crab/Perique-Ajax)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Ajax/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Ajax/?branch=master)
