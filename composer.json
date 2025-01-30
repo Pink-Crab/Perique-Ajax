@@ -23,7 +23,7 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.0 || ^8.0",
+        "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
         "phpstan/phpstan": "1.*",
         "szepeviktor/phpstan-wordpress": "<=1.1.7",
         "yoast/phpunit-polyfills": "^0.2.0 || ^1.0.0",
@@ -42,7 +42,7 @@
     "require": {
         "php": ">=7.4.0",
         "pinkcrab/perique-framework-core": "2.1.*",
-        "pinkcrab/http": "1.0.*",
+        "pinkcrab/http": "1.1.*",
         "pinkcrab/enqueue": "1.*",
         "pinkcrab/wp-nonce": "*"
     },

@@ -10,6 +10,7 @@ A simple but powerful Ajax library for the PinkCrab Perique framework. Allows fo
 [![WordPress 6.4 Test Suite [PHP7.4-8.2]](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_4.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_4.yaml)
 [![WordPress 6.5 Test Suite [PHP7.4-8.3]](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_5.yaml/badge.svg?branch=master)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_5.yaml)
 [![WP6.6 [PHP7.4-8.4] Tests](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_6.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_6.yaml)
+[![WP6.7 [PHP7.4-8.4] Tests](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_7.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Ajax/actions/workflows/WP_6_7.yaml)
 
 [![codecov](https://codecov.io/gh/Pink-Crab/Perique-Ajax/branch/master/graph/badge.svg?token=NEZOz6FsKK)](https://codecov.io/gh/Pink-Crab/Perique-Ajax)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Ajax/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Ajax/?branch=master)
