@@ -22,6 +22,18 @@ define( 'WP_DEFAULT_THEME', 'default' );
 // Test with WordPress debug mode (default).
 define( 'WP_DEBUG', true );
 
+// Custom error handler to suppress known WP 6.8 notice about wp_is_block_theme being called too early.
+// @see https://core.trac.wordpress.org/ticket/63086
+set_error_handler(
+	function ( $errno, $errstr ) {
+		if ( $errno === E_USER_NOTICE && strpos( $errstr, 'wp_is_block_theme' ) !== false ) {
+			return true;
+		}
+		return false;
+	},
+	E_USER_NOTICE
+);
+
 // ** MySQL settings ** //
 
 // This configuration file will be used by the copy of WordPress being tested.
