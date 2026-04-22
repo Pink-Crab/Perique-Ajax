@@ -42,7 +42,7 @@
     "require": {
         "php": ">=8.0.0",
         "pinkcrab/perique-framework-core": "2.1.*",
-        "pinkcrab/http": "1.1.*",
+        "pinkcrab/http": "1.1.* || 1.2.*",
         "pinkcrab/enqueue": "1.*",
         "pinkcrab/wp-nonce": "*"
     },
