@@ -89,14 +89,14 @@ class Some_Ajax extends Ajax {
     protected bool $logged_out;
 
     /**
-	 * @param \Psr\Http\Message\ServerRequestInterface $request
-	 * @param \PinkCrab\Ajax\Dispatcher\Response_Factory $response_factory
-	 * @return \Psr\Http\Message\ResponseInterface
-	 */
-	public function callback(
-		ServerRequestInterface $request,
-		Response_Factory $response_factory
-	): ResponseInterface {
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \PinkCrab\Ajax\Dispatcher\Response_Factory $response_factory
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function callback(
+        ServerRequestInterface $request,
+        Response_Factory $response_factory
+    ): ResponseInterface {
         // Return something 
         return $response_factory->success( 'something' );
     }
